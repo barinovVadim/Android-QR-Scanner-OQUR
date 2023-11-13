@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/analiticsFragment2"
+        android:icon="@drawable/analytics_button_navigation"
+        android:title="Отчет"/>
+
+    <item
+        android:id="@+id/mainFragment2"
+        android:icon="@drawable/home_button_navigation"
+        android:title="Главная"/>
+
+    <item
+        android:id="@+id/settingsFragment2"
+        android:icon="@drawable/settings_button_navigation"
+        android:title="Настройки"/>
+
+</menu>

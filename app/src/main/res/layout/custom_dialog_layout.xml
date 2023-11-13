@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="400dp"
+    android:layout_gravity="center"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        app:cardCornerRadius="10dp"
+        android:backgroundTint="@color/backColor"
+        android:id="@+id/cardWidget"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iconOnDialog"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="10dp"
+                android:scaleX="1"
+                android:scaleY="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/house_white" />
+
+            <EditText
+                android:id="@+id/enterSum"
+                android:layout_width="280dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/rounded_enter_dialog"
+                android:fontFamily="@font/ubuntu_light"
+                android:hint="Введите сумму..."
+                android:inputType="numberSigned"
+                android:paddingLeft="10dp"
+                android:singleLine="true"
+                android:textColor="@color/backColor"
+                android:textColorHint="@color/backColor"
+                android:textSize="14dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iconOnDialog" />
+
+            <EditText
+                android:id="@+id/enterCat"
+                android:layout_width="280dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/rounded_enter_dialog"
+                android:fontFamily="@font/ubuntu_light"
+                android:hint="Потрачено на..."
+                android:paddingLeft="10dp"
+                android:singleLine="true"
+                android:textColor="@color/backColor"
+                android:textColorHint="@color/backColor"
+                android:textSize="14dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/enterSum" />
+
+            <Button
+                android:id="@+id/dialogBtn"
+                android:layout_width="120dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="80dp"
+                android:layout_marginBottom="15dp"
+                android:fontFamily="@font/ubuntu"
+                android:text="Готово"
+                android:textAllCaps="false"
+                android:textColor="@color/backColor"
+                android:textSize="16dp"
+                app:cornerRadius="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/enterCat" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

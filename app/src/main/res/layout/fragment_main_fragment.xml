@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backColor"
+    tools:context=".MainFragment" >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cardPanel"
+        android:layout_width="350dp"
+        android:layout_height="110dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/btnCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="15dp"
+            android:background="#00000000"
+            android:scaleX="0.6"
+            android:scaleY="0.6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/credit_card" />
+
+        <ImageButton
+            android:id="@+id/btnWallet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:background="#00000000"
+            android:scaleX="0.6"
+            android:scaleY="0.6"
+            app:layout_constraintEnd_toStartOf="@+id/btnBank"
+            app:layout_constraintStart_toEndOf="@+id/btnCard"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/wallet" />
+
+        <ImageButton
+            android:id="@+id/btnBank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="17dp"
+            android:background="#00000000"
+            android:scaleX="0.6"
+            android:scaleY="0.6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/account_balance" />
+
+        <TextView
+            android:id="@+id/cardBalance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:fontFamily="@font/ubuntu"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="0"
+            android:textColor="@color/backColor"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/btnCard"
+            app:layout_constraintStart_toStartOf="@+id/btnCard" />
+
+        <TextView
+            android:id="@+id/walletBalance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:fontFamily="@font/ubuntu"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="0"
+            android:textColor="@color/backColor"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/btnWallet"
+            app:layout_constraintStart_toStartOf="@+id/btnWallet" />
+
+        <TextView
+            android:id="@+id/bankBalance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:fontFamily="@font/ubuntu"
+            android:gravity="center_horizontal"
+            android:text="0"
+            android:textColor="@color/backColor"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/btnBank"
+            app:layout_constraintStart_toStartOf="@+id/btnBank" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mainSpend"
+        android:layout_width="350dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/rounded"
+        app:layout_constraintEnd_toEndOf="@+id/cardPanel"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/cardPanel"
+        app:layout_constraintTop_toBottomOf="@+id/secondarySpend">
+
+        <ImageView
+            android:id="@+id/house"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:scaleX="0.7"
+            android:scaleY="0.7"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/house" />
+
+        <ImageView
+            android:id="@+id/bus"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_marginTop="10dp"
+            android:scaleX="0.7"
+            android:scaleY="0.7"
+            app:layout_constraintEnd_toStartOf="@+id/foodHouse"
+            app:layout_constraintStart_toEndOf="@+id/house"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/bus" />
+
+        <ImageView
+            android:id="@+id/foodHouse"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:scaleX="0.7"
+            android:scaleY="0.7"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/food_house" />
+
+        <TextView
+            android:id="@+id/mainSpendText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/ubuntu"
+            android:text="Необходимые траты (50%)"
+            android:textColor="@color/backColor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/house" />
+
+        <TextView
+            android:id="@+id/mainPr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/ubuntu"
+            android:text="0"
+            android:textColor="@color/backColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/foodHouse" />
+
+        <ProgressBar
+            android:id="@+id/progressBarMain"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="310dp"
+            android:layout_height="13dp"
+            android:layout_marginBottom="20dp"
+            android:progressDrawable="@drawable/custom_progress_bar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/secondarySpend"
+        android:layout_width="350dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/rounded"
+        app:layout_constraintEnd_toEndOf="@+id/cardPanel"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/cardPanel"
+        app:layout_constraintTop_toBottomOf="@+id/cardPanel">
+
+        <ImageView
+            android:id="@+id/coffee"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:scaleX="0.7"
+            android:scaleY="0.7"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/coffee" />
+
+        <ImageView
+            android:id="@+id/games"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_marginTop="10dp"
+            android:scaleX="0.7"
+            android:scaleY="0.7"
+            app:layout_constraintEnd_toStartOf="@+id/another"
+            app:layout_constraintStart_toEndOf="@+id/coffee"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/games" />
+
+        <ImageView
+            android:id="@+id/another"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:scaleX="0.7"
+            android:scaleY="0.7"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/another" />
+
+        <TextView
+            android:id="@+id/secondarySpendText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/ubuntu"
+            android:text="Личные траты (30%)"
+            android:textColor="@color/backColor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/coffee" />
+
+        <TextView
+            android:id="@+id/secondaryPr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/ubuntu"
+            android:text="0"
+            android:textColor="@color/backColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/another" />
+
+        <ProgressBar
+            android:id="@+id/progressBarSecondary"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="310dp"
+            android:layout_height="13dp"
+            android:layout_marginBottom="20dp"
+            android:progressDrawable="@drawable/custom_progress_bar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/saving"
+        android:layout_width="350dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/rounded"
+        app:layout_constraintEnd_toEndOf="@+id/cardPanel"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/cardPanel"
+        app:layout_constraintTop_toBottomOf="@+id/mainSpend">
+
+        <TextView
+            android:id="@+id/savingText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/ubuntu"
+            android:text="Сбережения (20%)"
+            android:textColor="@color/backColor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/spendPr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/ubuntu"
+            android:text="0"
+            android:textColor="@color/backColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/progressBarSaving"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="310dp"
+            android:layout_height="13dp"
+            android:layout_marginBottom="20dp"
+            android:progressDrawable="@drawable/custom_progress_bar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

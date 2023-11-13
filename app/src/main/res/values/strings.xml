@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">WYM</string>
+
+    <string name="dragMessage">Item added</string>
+    <string name="plsEnterSum">Введите сумму!</string>
+    <string name="plsEnterSumCorrect">Введите корректную сумму!</string>
+    <string name="plsNoMoney">Недостаточно средств!</string>
+    <string name="plsEnterSpend">Опишите трату!</string>
+
+    <string name="keyTotalBalance">total</string>
+</resources>
