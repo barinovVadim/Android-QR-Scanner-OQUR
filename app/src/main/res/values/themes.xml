@@ -12,9 +12,36 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:datePickerDialogTheme">@style/MyDatePickerDialogTheme</item>
     </style>
+
     <style name="BottomNavigationViewTextStyle">
         <item name="android:fontFamily">@font/ubuntu_light</item>
         <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="MyDatePickerDialogTheme" parent="ThemeOverlay.AppCompat.Dialog">
+
+        <item name="android:headerMonthTextAppearance">@style/HeaderTextStyle</item>
+
+        <item name="android:datePickerStyle">@style/MyDatePickerStyle</item>
+
+        <item name="android:textColorPrimaryInverse">@color/backColor</item>
+        <item name="android:colorControlHighlight">@color/backColor</item>
+        <item name="android:textColorSecondaryInverse">@color/secondaryWhite</item>
+        <item name="android:colorAccent">@color/colorPrimary</item>
+        <item name="android:headerBackground">@color/backColor</item>
+        <item name="android:windowBackground">@color/backColor</item>     <!--calendar background-->
+        <item name="android:colorControlActivated">@color/colorPrimary</item> <!--selected day-->
+        <item name="android:textColorPrimary">@color/secondaryWhite</item> <!--days of the month-->
+        <item name="android:textColorSecondary">@color/secondaryGrey</item>    <!--days of the week-->
+    </style>
+
+    <style name="MyDatePickerStyle" parent="@android:style/Widget.Material.Light.DatePicker">
+        <item name="android:headerBackground">@color/backColor</item> <!-- header background color -->
+    </style>
+
+    <style name="HeaderTextStyle" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textColor">@color/secondaryWhite</item>
     </style>
 </resources>

@@ -1,7 +1,11 @@
 package com.example.wym_002
 
 import android.annotation.SuppressLint
+import android.app.DatePickerDialog
+import android.app.DatePickerDialog.OnDateSetListener
 import android.app.Dialog
+import android.app.TimePickerDialog
+import android.app.TimePickerDialog.OnTimeSetListener
 import android.content.ClipData
 import android.content.ClipDescription
 import android.content.Context
@@ -10,18 +14,24 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Point
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import android.os.Bundle
+import android.text.format.DateUtils
 import android.view.*
 import android.view.animation.AlphaAnimation
-import androidx.fragment.app.Fragment
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.content.res.ResourcesCompat
+import androidx.fragment.app.Fragment
 import com.example.wym_002.databinding.CustomCashDialogLayoutBinding
 import com.example.wym_002.databinding.CustomDialogLayoutBinding
 import com.example.wym_002.databinding.FragmentMainFragmentBinding
+import java.text.SimpleDateFormat
+import java.util.*
+
 
 class MainFragment : Fragment() {
 
@@ -30,6 +40,8 @@ class MainFragment : Fragment() {
     private lateinit var customCashDialog: CustomCashDialogLayoutBinding
     private lateinit var customDialog: CustomDialogLayoutBinding
     lateinit var pref: SharedPreferences
+
+    private val calendar = Calendar.getInstance()
 
     var toast: Toast? = null
 
@@ -125,6 +137,14 @@ class MainFragment : Fragment() {
             dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             dialog.setContentView(customDialog.root)
             dialog.setCancelable(true)
+
+            // указывается дата по умолчанию
+            val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
+            customDialog.enterData.text = "Дата: ${dateFormat.format(calendar.time)}"
+
+            customDialog.enterData.setOnClickListener {
+                showDataPicker()
+            }
 
             customDialog.dialogBtn.setOnClickListener {
 
@@ -223,9 +243,24 @@ class MainFragment : Fragment() {
 
         image.setOnDragListener(maskDragListener)
 
-
     }
 
+    private fun showDataPicker(){
+
+        val datePickerDialog = DatePickerDialog(this.activity!!, {DatePicker, year: Int, monthOfYear: Int, dayOfMonth: Int ->
+            val selectedDate = Calendar.getInstance()
+            selectedDate.set(year, monthOfYear, dayOfMonth)
+            val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
+            val formattedDate = dateFormat.format(selectedDate.time)
+            customDialog.enterData.text = "Дата: $formattedDate"
+        },
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        )
+        datePickerDialog.show()
+
+    }
 
     @SuppressLint("ClickableViewAccessibility")      // слушатель движений
     private fun attachViewDragListener(imageButton: ImageButton, drawable: Int, drawableIcon: Int) {

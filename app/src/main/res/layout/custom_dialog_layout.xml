@@ -3,15 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="400dp"
-    android:layout_gravity="center"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
 
     <androidx.cardview.widget.CardView
-        app:cardCornerRadius="10dp"
-        android:backgroundTint="@color/backColor"
         android:id="@+id/cardWidget"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:backgroundTint="@color/backColor"
+        app:cardCornerRadius="10dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -53,9 +53,7 @@
                 android:id="@+id/enterCat"
                 android:layout_width="280dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp"
-                android:layout_marginEnd="20dp"
                 android:background="@drawable/rounded_enter_dialog"
                 android:fontFamily="@font/ubuntu_light"
                 android:hint="Потрачено на..."
@@ -64,9 +62,26 @@
                 android:textColor="@color/backColor"
                 android:textColorHint="@color/backColor"
                 android:textSize="14dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/enterSum"
+                app:layout_constraintStart_toStartOf="@+id/enterSum"
                 app:layout_constraintTop_toBottomOf="@+id/enterSum" />
+
+            <TextView
+                android:id="@+id/enterData"
+                android:layout_width="280dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/rounded_enter_dialog"
+                android:fontFamily="@font/ubuntu_light"
+                android:gravity="center_vertical"
+                android:inputType="date"
+                android:paddingLeft="10dp"
+                android:singleLine="true"
+                android:textColor="@color/backColor"
+                android:textColorHint="@color/backColor"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@+id/enterCat"
+                app:layout_constraintTop_toBottomOf="@+id/enterCat" />
 
             <Button
                 android:id="@+id/dialogBtn"
@@ -85,7 +100,17 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/enterCat" />
+                app:layout_constraintTop_toBottomOf="@+id/enterData" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/enterData"
+                app:layout_constraintEnd_toEndOf="@+id/enterData"
+                app:layout_constraintTop_toTopOf="@+id/enterData"
+                app:srcCompat="@drawable/edit_calendar" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

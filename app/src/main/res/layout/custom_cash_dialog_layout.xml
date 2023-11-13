@@ -47,7 +47,8 @@
                 android:textSize="14dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/iconOnDialog" />
+                app:layout_constraintTop_toBottomOf="@+id/iconOnDialog"
+                android:maxLength="9"/>
 
 
             <Button

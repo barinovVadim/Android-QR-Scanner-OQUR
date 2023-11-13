@@ -68,7 +68,8 @@
             android:textColor="@color/backColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/btnCard"
-            app:layout_constraintStart_toStartOf="@+id/btnCard" />
+            app:layout_constraintStart_toStartOf="@+id/btnCard"
+            android:maxLength="9"/>
 
         <TextView
             android:id="@+id/walletBalance"
@@ -81,7 +82,8 @@
             android:textColor="@color/backColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/btnWallet"
-            app:layout_constraintStart_toStartOf="@+id/btnWallet" />
+            app:layout_constraintStart_toStartOf="@+id/btnWallet"
+            android:maxLength="9"/>
 
         <TextView
             android:id="@+id/bankBalance"
@@ -94,7 +96,8 @@
             android:textColor="@color/backColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/btnBank"
-            app:layout_constraintStart_toStartOf="@+id/btnBank" />
+            app:layout_constraintStart_toStartOf="@+id/btnBank"
+            android:maxLength="9"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
