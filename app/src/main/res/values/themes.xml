@@ -27,11 +27,11 @@
         <item name="android:datePickerStyle">@style/MyDatePickerStyle</item>
 
         <item name="android:textColorPrimaryInverse">@color/backColor</item>
-        <item name="android:colorControlHighlight">@color/backColor</item>
+        <item name="android:colorControlHighlight">@color/backSelected</item>
         <item name="android:textColorSecondaryInverse">@color/secondaryWhite</item>
         <item name="android:colorAccent">@color/colorPrimary</item>
         <item name="android:headerBackground">@color/backColor</item>
-        <item name="android:windowBackground">@color/backColor</item>     <!--calendar background-->
+        <item name="android:windowBackground">@drawable/rounded_calendar</item>     <!--calendar background-->
         <item name="android:colorControlActivated">@color/colorPrimary</item> <!--selected day-->
         <item name="android:textColorPrimary">@color/secondaryWhite</item> <!--days of the month-->
         <item name="android:textColorSecondary">@color/secondaryGrey</item>    <!--days of the week-->
