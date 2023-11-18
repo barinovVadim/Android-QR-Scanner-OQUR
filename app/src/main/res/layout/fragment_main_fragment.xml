@@ -110,7 +110,7 @@
         app:layout_constraintEnd_toEndOf="@+id/cardPanel"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/cardPanel"
-        app:layout_constraintTop_toBottomOf="@+id/secondarySpend">
+        app:layout_constraintTop_toBottomOf="@+id/cardPanel">
 
         <ImageView
             android:id="@+id/house"
@@ -191,7 +191,7 @@
         app:layout_constraintEnd_toEndOf="@+id/cardPanel"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/cardPanel"
-        app:layout_constraintTop_toBottomOf="@+id/cardPanel">
+        app:layout_constraintTop_toBottomOf="@+id/mainSpend">
 
         <ImageView
             android:id="@+id/coffee"
@@ -272,7 +272,7 @@
         app:layout_constraintEnd_toEndOf="@+id/cardPanel"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/cardPanel"
-        app:layout_constraintTop_toBottomOf="@+id/mainSpend">
+        app:layout_constraintTop_toBottomOf="@+id/secondarySpend">
 
         <TextView
             android:id="@+id/savingText"
