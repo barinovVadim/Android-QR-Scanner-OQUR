@@ -1,15 +1,16 @@
 package com.example.wym_002
 
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.wym_002.fragments.AnaliticsFragment
+import com.example.wym_002.fragments.MainFragment
+import com.example.wym_002.fragments.SettingsFragment
 import com.example.wym_002.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-// WYM Watch Your Money TODO(НАДО ПРИДУМАТЬ ЗАСТАВКУ)
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding

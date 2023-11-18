@@ -1,11 +1,8 @@
-package com.example.wym_002
+package com.example.wym_002.fragments
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
-import android.app.DatePickerDialog.OnDateSetListener
 import android.app.Dialog
-import android.app.TimePickerDialog
-import android.app.TimePickerDialog.OnTimeSetListener
 import android.content.ClipData
 import android.content.ClipDescription
 import android.content.Context
@@ -14,24 +11,22 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Point
 import android.graphics.drawable.ColorDrawable
-import android.os.Build
 import android.os.Bundle
-import android.text.format.DateUtils
 import android.view.*
 import android.view.animation.AlphaAnimation
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
+import com.example.wym_002.R
 import com.example.wym_002.databinding.CustomCashDialogLayoutBinding
 import com.example.wym_002.databinding.CustomDialogLayoutBinding
 import com.example.wym_002.databinding.FragmentMainFragmentBinding
+import com.example.wym_002.hidingPanel
 import java.text.SimpleDateFormat
 import java.util.*
-
 
 class MainFragment : Fragment() {
 
@@ -69,14 +64,22 @@ class MainFragment : Fragment() {
     }
 
 
-    // TODO("нужно сделать рабочие прогресс бары и чтобы считалоись лимиты")
+    // TODO("нужно сделать рабочие прогресс бары и чтобы считались лимиты")
 
 
     private fun attachViewDragListenerAllIems() {
         // В ВИДЕ КЛЮЧА ПЕРЕДАЕТ ИКОНКУ В БЕЛОМ ЦВЕТЕ
-        attachViewDragListener(binding.btnCard, R.drawable.credit_card, R.drawable.credit_card_white)
-        attachViewDragListener(binding.btnWallet, R.drawable.wallet, R.drawable.wallet_white)
-        attachViewDragListener(binding.btnBank, R.drawable.account_balance, R.drawable.account_balance_white)
+        attachViewDragListener(binding.btnCard,
+            R.drawable.credit_card,
+            R.drawable.credit_card_white
+        )
+        attachViewDragListener(binding.btnWallet,
+            R.drawable.wallet,
+            R.drawable.wallet_white)
+        attachViewDragListener(binding.btnBank,
+            R.drawable.account_balance,
+            R.drawable.account_balance_white
+        )
     }
 
 
@@ -84,9 +87,11 @@ class MainFragment : Fragment() {
         startFunc(binding.house, R.drawable.house_white)
         startFunc(binding.bus, R.drawable.bus_white)
         startFunc(binding.foodHouse, R.drawable.food_house_white)
+        startFunc(binding.health, R.drawable.health_white)
         startFunc(binding.coffee, R.drawable.coffee_white)
         startFunc(binding.games, R.drawable.games_white)
         startFunc(binding.another, R.drawable.another_white)
+        startFunc(binding.people, R.drawable.people_white)
     }
 
 
@@ -187,9 +192,15 @@ class MainFragment : Fragment() {
             if (dragEvent.x in catXStart..catXEnd && dragEvent.y in catYStart..catYEnd){
                 // проверка на то, откуда потратил
                 when (draggableItem) {
-                    binding.btnCard -> showCustomDialog(binding.cardBalance, R.drawable.credit_card_white)
-                    binding.btnWallet -> showCustomDialog(binding.walletBalance, R.drawable.wallet_white)
-                    binding.btnBank -> showCustomDialog(binding.bankBalance, R.drawable.account_balance_white)
+                    binding.btnCard -> showCustomDialog(binding.cardBalance,
+                        R.drawable.credit_card_white
+                    )
+                    binding.btnWallet -> showCustomDialog(binding.walletBalance,
+                        R.drawable.wallet_white
+                    )
+                    binding.btnBank -> showCustomDialog(binding.bankBalance,
+                        R.drawable.account_balance_white
+                    )
                 }
             }
 
@@ -247,13 +258,14 @@ class MainFragment : Fragment() {
 
     private fun showDataPicker(){
 
-        val datePickerDialog = DatePickerDialog(this.activity!!, {DatePicker, year: Int, monthOfYear: Int, dayOfMonth: Int ->
-            val selectedDate = Calendar.getInstance()
-            selectedDate.set(year, monthOfYear, dayOfMonth)
-            val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
-            val formattedDate = dateFormat.format(selectedDate.time)
-            customDialog.enterData.text = "Дата: $formattedDate"
-        },
+        val datePickerDialog = DatePickerDialog(
+            this.activity!!, { DatePicker, year: Int, monthOfYear: Int, dayOfMonth: Int ->
+                val selectedDate = Calendar.getInstance()
+                selectedDate.set(year, monthOfYear, dayOfMonth)
+                val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
+                val formattedDate = dateFormat.format(selectedDate.time)
+                customDialog.enterData.text = "Дата: $formattedDate"
+            },
             calendar.get(Calendar.YEAR),
             calendar.get(Calendar.MONTH),
             calendar.get(Calendar.DAY_OF_MONTH)

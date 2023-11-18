@@ -1,12 +1,12 @@
-package com.example.wym_002
+package com.example.wym_002.fragments
 
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.example.wym_002.databinding.FragmentSettingsFragmentBinding
 
 class SettingsFragment : Fragment() {

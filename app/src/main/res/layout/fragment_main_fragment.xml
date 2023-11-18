@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backColor"
-    tools:context=".MainFragment" >
+    tools:context=".fragments.MainFragment" >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cardPanel"
@@ -114,59 +114,73 @@
 
         <ImageView
             android:id="@+id/house"
-            android:layout_width="110dp"
-            android:layout_height="110dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:scaleX="0.7"
-            android:scaleY="0.7"
+            android:layout_width="82dp"
+            android:layout_height="82dp"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="15dp"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/house" />
 
         <ImageView
             android:id="@+id/bus"
-            android:layout_width="110dp"
-            android:layout_height="110dp"
-            android:layout_marginTop="10dp"
-            android:scaleX="0.7"
-            android:scaleY="0.7"
-            app:layout_constraintEnd_toStartOf="@+id/foodHouse"
+            android:layout_width="82dp"
+            android:layout_height="82dp"
+            android:layout_marginTop="15dp"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
             app:layout_constraintStart_toEndOf="@+id/house"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/bus" />
 
         <ImageView
             android:id="@+id/foodHouse"
-            android:layout_width="110dp"
-            android:layout_height="110dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:scaleX="0.7"
-            android:scaleY="0.7"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="82dp"
+            android:layout_height="82dp"
+            android:layout_marginTop="15dp"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
+            app:layout_constraintEnd_toStartOf="@+id/health"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/food_house" />
+
+        <ImageView
+            android:id="@+id/health"
+            android:layout_width="82dp"
+            android:layout_height="82dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="11dp"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/health" />
 
         <TextView
             android:id="@+id/mainSpendText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
+            android:layout_marginBottom="11dp"
             android:fontFamily="@font/ubuntu"
             android:text="Необходимые траты (50%)"
             android:textColor="@color/backColor"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/house" />
+            app:layout_constraintBottom_toTopOf="@+id/progressBarMain"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/mainPr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
+            android:layout_marginBottom="11dp"
             android:fontFamily="@font/ubuntu"
             android:text="0"
             android:textColor="@color/backColor"
+            app:layout_constraintBottom_toTopOf="@+id/progressBarMain"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/foodHouse" />
 
@@ -195,61 +209,73 @@
 
         <ImageView
             android:id="@+id/coffee"
-            android:layout_width="110dp"
-            android:layout_height="110dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:scaleX="0.7"
-            android:scaleY="0.7"
+            android:layout_width="82dp"
+            android:layout_height="82dp"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="15dp"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/coffee" />
 
         <ImageView
             android:id="@+id/games"
-            android:layout_width="110dp"
-            android:layout_height="110dp"
-            android:layout_marginTop="10dp"
-            android:scaleX="0.7"
-            android:scaleY="0.7"
-            app:layout_constraintEnd_toStartOf="@+id/another"
+            android:layout_width="82dp"
+            android:layout_height="82dp"
+            android:layout_marginTop="15dp"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
             app:layout_constraintStart_toEndOf="@+id/coffee"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/games" />
 
         <ImageView
             android:id="@+id/another"
-            android:layout_width="110dp"
-            android:layout_height="110dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:scaleX="0.7"
-            android:scaleY="0.7"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="82dp"
+            android:layout_height="82dp"
+            android:layout_marginTop="15dp"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
+            app:layout_constraintEnd_toStartOf="@+id/people"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/another" />
+
+        <ImageView
+            android:id="@+id/people"
+            android:layout_width="82dp"
+            android:layout_height="82dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="11dp"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/people" />
 
         <TextView
             android:id="@+id/secondarySpendText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
+            android:layout_marginBottom="11dp"
             android:fontFamily="@font/ubuntu"
             android:text="Личные траты (30%)"
             android:textColor="@color/backColor"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/coffee" />
+            app:layout_constraintBottom_toTopOf="@+id/progressBarSecondary"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/secondaryPr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
+            android:layout_marginBottom="11dp"
             android:fontFamily="@font/ubuntu"
             android:text="0"
             android:textColor="@color/backColor"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/another" />
+            app:layout_constraintBottom_toTopOf="@+id/progressBarSecondary"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <ProgressBar
             android:id="@+id/progressBarSecondary"
@@ -279,24 +305,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginBottom="11dp"
             android:fontFamily="@font/ubuntu"
             android:text="Сбережения (20%)"
             android:textColor="@color/backColor"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toTopOf="@+id/progressBarSaving"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/spendPr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
+            android:layout_marginBottom="11dp"
             android:fontFamily="@font/ubuntu"
             android:text="0"
             android:textColor="@color/backColor"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toTopOf="@+id/progressBarSaving"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <ProgressBar
             android:id="@+id/progressBarSaving"

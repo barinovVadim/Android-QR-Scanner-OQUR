@@ -1,4 +1,4 @@
-package com.example.wym_002
+package com.example.wym_002.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
