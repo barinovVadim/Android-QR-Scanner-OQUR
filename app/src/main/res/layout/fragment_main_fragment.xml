@@ -190,6 +190,8 @@
             android:layout_width="310dp"
             android:layout_height="13dp"
             android:layout_marginBottom="20dp"
+            android:progress="8500"
+            android:max="10000"
             android:progressDrawable="@drawable/custom_progress_bar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -231,18 +233,18 @@
             app:srcCompat="@drawable/games" />
 
         <ImageView
-            android:id="@+id/another"
+            android:id="@+id/clothes"
             android:layout_width="82dp"
             android:layout_height="82dp"
             android:layout_marginTop="15dp"
             android:scaleX="0.8"
             android:scaleY="0.8"
-            app:layout_constraintEnd_toStartOf="@+id/people"
+            app:layout_constraintEnd_toStartOf="@+id/another"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/another" />
+            app:srcCompat="@drawable/clothes" />
 
         <ImageView
-            android:id="@+id/people"
+            android:id="@+id/another"
             android:layout_width="82dp"
             android:layout_height="82dp"
             android:layout_marginTop="15dp"
@@ -251,7 +253,7 @@
             android:scaleY="0.8"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/people" />
+            app:srcCompat="@drawable/another" />
 
         <TextView
             android:id="@+id/secondarySpendText"
@@ -283,6 +285,8 @@
             android:layout_width="310dp"
             android:layout_height="13dp"
             android:layout_marginBottom="20dp"
+            android:progress="4000"
+            android:max="10000"
             android:progressDrawable="@drawable/custom_progress_bar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -330,7 +334,9 @@
             android:layout_width="310dp"
             android:layout_height="13dp"
             android:layout_marginBottom="20dp"
-            android:progressDrawable="@drawable/custom_progress_bar"
+            android:progress="10000"
+            android:max="10000"
+            android:progressDrawable="@drawable/custom_progress_bar2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

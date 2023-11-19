@@ -22,9 +22,8 @@
                     <shape android:shape="rectangle">
                         <corners android:radius="6dp"/>
                         <gradient
-                            android:centerY="0.65"
                             android:centerColor="@color/colorPrimary"
-                            android:endColor="@color/redHolo"
+                            android:endColor="@color/colorPrimary"
                             android:startColor="@color/colorPrimary"
                             android:useLevel="false"/>
                         <stroke

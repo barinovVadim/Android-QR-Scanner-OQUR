@@ -90,8 +90,8 @@ class MainFragment : Fragment() {
         startFunc(binding.health, R.drawable.health_white)
         startFunc(binding.coffee, R.drawable.coffee_white)
         startFunc(binding.games, R.drawable.games_white)
+        startFunc(binding.clothes, R.drawable.clothes_white)
         startFunc(binding.another, R.drawable.another_white)
-        startFunc(binding.people, R.drawable.people_white)
     }
 
 
