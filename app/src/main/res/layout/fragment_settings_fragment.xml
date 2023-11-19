@@ -4,22 +4,109 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backColor"
     tools:context=".fragments.SettingsFragment">
 
-    <Button
-        android:id="@+id/clearPref"
-        android:layout_width="70dp"
-        android:layout_height="40dp"
-        android:background="@drawable/rounded_enter_dialog"
-        android:fontFamily="@font/ubuntu"
-        android:text="clear"
-        android:textColor="@color/backColor"
-        android:textSize="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+    <TextView
+        android:id="@+id/textData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/ubuntu_light"
+        android:text="Дата начала учета"
+        android:textColor="@color/secondaryWhite"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/textSpashScreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/ubuntu_light"
+        android:text="Включить заставку"
+        android:textColor="@color/secondaryWhite"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/textData"
+        app:layout_constraintTop_toBottomOf="@+id/textData" />
 
+    <TextView
+        android:id="@+id/clearPref"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/ubuntu_light"
+        android:text="Стереть данные"
+        android:textColor="@color/secondaryWhite"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/textData"
+        app:layout_constraintTop_toBottomOf="@+id/textSpashScreen" />
 
+    <TextView
+        android:id="@+id/textInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/ubuntu_light"
+        android:text="О нас"
+        android:textColor="@color/secondaryWhite"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/textData"
+        app:layout_constraintTop_toBottomOf="@+id/clearPref" />
+
+    <TextView
+        android:id="@+id/textViewWYM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/ubuntu_light"
+        android:gravity="center_horizontal"
+        android:text="WYM\nWatch Your Money\nv.1.0"
+        android:textColor="@color/greyWYM"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/calendar_apply"
+        app:layout_constraintBottom_toBottomOf="@+id/textData"
+        app:layout_constraintEnd_toStartOf="@+id/textData"
+        app:layout_constraintTop_toTopOf="@+id/textData" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/image_screen"
+        app:layout_constraintBottom_toBottomOf="@+id/textSpashScreen"
+        app:layout_constraintEnd_toStartOf="@+id/textSpashScreen"
+        app:layout_constraintTop_toTopOf="@+id/textSpashScreen" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/delete"
+        app:layout_constraintBottom_toBottomOf="@+id/clearPref"
+        app:layout_constraintEnd_toStartOf="@+id/clearPref"
+        app:layout_constraintTop_toTopOf="@+id/clearPref" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/group"
+        app:layout_constraintBottom_toBottomOf="@+id/textInfo"
+        app:layout_constraintEnd_toStartOf="@+id/textInfo"
+        app:layout_constraintTop_toTopOf="@+id/textInfo" />
 </androidx.constraintlayout.widget.ConstraintLayout>
