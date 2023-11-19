@@ -51,7 +51,8 @@ class MainFragment : Fragment() {
         // resultCardBalance        key: R.drawable.credit_card_white.toString()
         // resultWalletBalance      key: R.drawable.wallet_white.toString()
         // resultBankBalance        key: R.drawable.account_balance_white.toString()
-        // resultTotalBalance       key: getString(R.string.keyTotalBalance
+        // resultTotalBalance       key: getString(R.string.keyTotalBalance)
+        // checkSplashScreen        key: getString(R.string.flagSplashScreen)
 
 
         updatingVariables()
@@ -161,8 +162,7 @@ class MainFragment : Fragment() {
                         if (Integer.parseInt(balance.text.toString()) >= Integer.parseInt(res)) {
                             if (spend.isNotEmpty()) {       // TODO(сделать добавление в бд)
 
-                                val dataToSave =
-                                    Integer.parseInt(balance.text.toString()) - Integer.parseInt(res)
+                                val dataToSave = Integer.parseInt(balance.text.toString()) - Integer.parseInt(res)
                                 saveData(drawableIconKey.toString(), dataToSave)
 
                                 dialog.dismiss()

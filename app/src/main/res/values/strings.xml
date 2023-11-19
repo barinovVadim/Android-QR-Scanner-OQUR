@@ -8,4 +8,5 @@
     <string name="plsEnterSpend">Опишите трату!</string>
 
     <string name="keyTotalBalance">total</string>
+    <string name="flagSplashScreen">flagSplashScreen</string>
 </resources>
