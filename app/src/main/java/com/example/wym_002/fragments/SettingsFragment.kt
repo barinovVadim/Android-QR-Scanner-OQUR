@@ -42,8 +42,7 @@ class SettingsFragment : Fragment() {
         // setDateDay               key: getString(R.string.setDateDay)
 
 
-        binding.switchSplashScreen.isChecked = pref.getInt(getString(R.string.flagSplashScreen), 1) == 1
-        binding.textSetDate.text = pref.getInt(getString(R.string.setDateDay), 1).toString()
+        updatingVariables()
 
         buttonToInfo()
 
@@ -141,20 +140,21 @@ class SettingsFragment : Fragment() {
 
         dialogScrollDate.numberPicker.minValue = 1
         dialogScrollDate.numberPicker.maxValue = 31
-        dialogScrollDate.numberPicker.value = 1
+        dialogScrollDate.numberPicker.value = pref.getInt(getString(R.string.setDateDay), 0) + 1
         dialogScrollDate.numberPicker.wrapSelectorWheel = false
 
-        var res = 1  // день начала учета
+        var res = 0  // день начала учета
 
-        dialogScrollDate.numberPicker.setOnValueChangedListener{picker, oldVal, newVal ->
-            res = newVal
+        dialogScrollDate.numberPicker.setOnValueChangedListener{ _, _, newVal ->
+            res = newVal - 1
         }
 
         dialogScrollDate.dialogBtn.setOnClickListener {
 
             saveData(getString(R.string.setDateDay), res)
             dialog.dismiss()
-            binding.textSetDate.text = pref.getInt(getString(R.string.setDateDay), 1).toString()
+            val setDate = pref.getInt(getString(R.string.setDateDay), 0) + 1
+            binding.textSetDate.text = setDate.toString()
 
         }
 
@@ -241,6 +241,8 @@ class SettingsFragment : Fragment() {
             // TODO(нужно сделать переброс на диалоговое окно)
             clearPref()
 
+            updatingVariables()
+
         }
 
         binding.imageClearPref.setOnClickListener{
@@ -251,6 +253,8 @@ class SettingsFragment : Fragment() {
 
             // TODO(нужно сделать переброс на диалоговое окно)
             clearPref()
+
+            updatingVariables()
 
         }
 
@@ -270,4 +274,13 @@ class SettingsFragment : Fragment() {
         editor?.apply()
 
     }
+
+    private fun updatingVariables() {       // обновляет счетчики на экране
+
+        binding.switchSplashScreen.isChecked = pref.getInt(getString(R.string.flagSplashScreen), 0) == 1
+        val setDate = pref.getInt(getString(R.string.setDateDay), 0) + 1
+        binding.textSetDate.text = setDate.toString()
+
+    }
+
 }
