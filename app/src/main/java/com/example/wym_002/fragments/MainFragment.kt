@@ -3,6 +3,7 @@ package com.example.wym_002.fragments
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.Dialog
+import android.app.TimePickerDialog
 import android.content.ClipData
 import android.content.ClipDescription
 import android.content.Context
@@ -146,10 +147,13 @@ class MainFragment : Fragment() {
 
             // указывается дата по умолчанию
             val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
-            customDialog.enterData.text = "Дата: ${dateFormat.format(calendar.time)}"
+            val textDate = "Дата: ${dateFormat.format(calendar.time)}"
+            val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+            val textTime = "Время: ${timeFormat.format(calendar.time)}"
+            customDialog.enterData.text = "$textDate        $textTime"
 
             customDialog.enterData.setOnClickListener {
-                showDataPicker()
+                showDataTimePicker()
             }
 
             customDialog.dialogBtn.setOnClickListener {
@@ -256,21 +260,32 @@ class MainFragment : Fragment() {
 
     }
 
-    private fun showDataPicker(){
+    private fun showDataTimePicker(){
 
-        val datePickerDialog = DatePickerDialog(
+        val selectedDate = Calendar.getInstance()
+
+        DatePickerDialog(
             this.activity!!, { DatePicker, year: Int, monthOfYear: Int, dayOfMonth: Int ->
-                val selectedDate = Calendar.getInstance()
-                selectedDate.set(year, monthOfYear, dayOfMonth)
-                val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
-                val formattedDate = dateFormat.format(selectedDate.time)
-                customDialog.enterData.text = "Дата: $formattedDate"
+
+                TimePickerDialog(
+                    this.activity!!, { TimePicker, hourOfDay: Int, minute: Int ->
+                        selectedDate.set(year, monthOfYear, dayOfMonth, hourOfDay, minute)
+                        val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
+                        val textDate = "Дата: ${dateFormat.format(selectedDate.time)}"
+                        val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+                        val textTime = "Время: ${timeFormat.format(selectedDate.time)}"
+                        customDialog.enterData.text = "$textDate        $textTime"
+                    },
+                    calendar.get(Calendar.HOUR_OF_DAY),
+                    calendar.get(Calendar.MINUTE),
+                    false
+                ).show()
+
             },
             calendar.get(Calendar.YEAR),
             calendar.get(Calendar.MONTH),
             calendar.get(Calendar.DAY_OF_MONTH)
-        )
-        datePickerDialog.show()
+        ).show()
 
     }
 

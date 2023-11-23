@@ -31,16 +31,17 @@ class SplashScreenActivity : AppCompatActivity() {
 
         binding.layoutWym.alpha = 0f
 
-        if(pref.getInt(getString(R.string.flagSplashScreen), 0) == 1) {
-            binding.layoutWym.animate().setDuration(1000).alpha(1f).withEndAction {
-                val i = Intent(this, MainActivity::class.java)
-                startActivity(i)
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-                finish()
+        when (pref.getInt(getString(R.string.flagSplashScreen), 0)){
+            1 -> {
+                binding.layoutWym.animate().setDuration(1000).alpha(1f).withEndAction {
+                    startActivity(Intent(this, MainActivity::class.java))
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+                    finish()
+                }
             }
-        }else{
-            val i = Intent(this, MainActivity::class.java)
-            startActivity(i)
+            else -> {
+                startActivity(Intent(this, MainActivity::class.java))
+            }
         }
 
     }
