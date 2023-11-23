@@ -27,12 +27,14 @@ class SplashScreenActivity : AppCompatActivity() {
         // resultWalletBalance      key: R.drawable.wallet_white.toString()
         // resultBankBalance        key: R.drawable.account_balance_white.toString()
         // resultTotalBalance       key: getString(R.string.keyTotalBalance)
-        // checkSplashScreen        key: getString(R.string.flagSplashScreen)
+        // checkSplashScreen        key: getString(R.string.flagSplashScreen)      ОБРАТНЫЕ ПЕРЕМЕННЫЕ
+        //                                                                        0 == TRUE   1 == FALSE
+        // setDateDay               key: getString(R.string.setDateDay)
 
         binding.layoutWym.alpha = 0f
 
         when (pref.getInt(getString(R.string.flagSplashScreen), 0)){
-            1 -> {
+            0 -> {
                 binding.layoutWym.animate().setDuration(1000).alpha(1f).withEndAction {
                     startActivity(Intent(this, MainActivity::class.java))
                     overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)

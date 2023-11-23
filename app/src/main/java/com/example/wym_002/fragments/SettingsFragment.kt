@@ -38,10 +38,12 @@ class SettingsFragment : Fragment() {
         // resultWalletBalance      key: R.drawable.wallet_white.toString()
         // resultBankBalance        key: R.drawable.account_balance_white.toString()
         // resultTotalBalance       key: getString(R.string.keyTotalBalance)
-        // checkSplashScreen        key: getString(R.string.flagSplashScreen)
+        // checkSplashScreen        key: getString(R.string.flagSplashScreen)      ОБРАТНЫЕ ПЕРЕМЕННЫЕ
+        //                                                                        0 == TRUE   1 == FALSE
         // setDateDay               key: getString(R.string.setDateDay)
 
 
+        binding.switchSplashScreen.isChecked = pref.getInt(getString(R.string.flagSplashScreen), 0) == 0
         updatingVariables()
 
         buttonToInfo()
@@ -184,11 +186,11 @@ class SettingsFragment : Fragment() {
             when (binding.switchSplashScreen.isChecked) {
                 true -> {
                     binding.switchSplashScreen.isChecked = false
-                    saveData(getString(R.string.flagSplashScreen), 0)
+                    saveData(getString(R.string.flagSplashScreen), 1)
                 }
                 else -> {
                     binding.switchSplashScreen.isChecked = true
-                    saveData(getString(R.string.flagSplashScreen), 1)
+                    saveData(getString(R.string.flagSplashScreen), 0)
                 }
             }
         }
@@ -202,20 +204,20 @@ class SettingsFragment : Fragment() {
             when (binding.switchSplashScreen.isChecked) {
                 true -> {
                     binding.switchSplashScreen.isChecked = false
-                    saveData(getString(R.string.flagSplashScreen), 0)
+                    saveData(getString(R.string.flagSplashScreen), 1)
                 }
                 else -> {
                     binding.switchSplashScreen.isChecked = true
-                    saveData(getString(R.string.flagSplashScreen), 1)
+                    saveData(getString(R.string.flagSplashScreen), 0)
                 }
             }
         }
 
         binding.switchSplashScreen.setOnCheckedChangeListener { buttonView, isChecked ->
             if(isChecked){
-                saveData(getString(R.string.flagSplashScreen), 1)
-            }else{
                 saveData(getString(R.string.flagSplashScreen), 0)
+            }else{
+                saveData(getString(R.string.flagSplashScreen), 1)
             }
         }
     }
@@ -277,7 +279,6 @@ class SettingsFragment : Fragment() {
 
     private fun updatingVariables() {       // обновляет счетчики на экране
 
-        binding.switchSplashScreen.isChecked = pref.getInt(getString(R.string.flagSplashScreen), 0) == 1
         val setDate = pref.getInt(getString(R.string.setDateDay), 0) + 1
         binding.textSetDate.text = setDate.toString()
 
