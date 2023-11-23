@@ -11,12 +11,12 @@
         android:id="@+id/cardPanel"
         android:layout_width="350dp"
         android:layout_height="110dp"
-        android:layout_marginTop="20dp"
         android:background="@drawable/rounded"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.026">
 
         <ImageButton
             android:id="@+id/btnCard"
@@ -64,12 +64,12 @@
             android:layout_marginBottom="15dp"
             android:fontFamily="@font/ubuntu"
             android:gravity="center_horizontal|center_vertical"
+            android:maxLength="9"
             android:text="0"
             android:textColor="@color/backColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/btnCard"
-            app:layout_constraintStart_toStartOf="@+id/btnCard"
-            android:maxLength="9"/>
+            app:layout_constraintStart_toStartOf="@+id/btnCard" />
 
         <TextView
             android:id="@+id/walletBalance"
@@ -78,12 +78,12 @@
             android:layout_marginBottom="15dp"
             android:fontFamily="@font/ubuntu"
             android:gravity="center_horizontal|center_vertical"
+            android:maxLength="9"
             android:text="0"
             android:textColor="@color/backColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/btnWallet"
-            app:layout_constraintStart_toStartOf="@+id/btnWallet"
-            android:maxLength="9"/>
+            app:layout_constraintStart_toStartOf="@+id/btnWallet" />
 
         <TextView
             android:id="@+id/bankBalance"
@@ -92,12 +92,12 @@
             android:layout_marginBottom="15dp"
             android:fontFamily="@font/ubuntu"
             android:gravity="center_horizontal"
+            android:maxLength="9"
             android:text="0"
             android:textColor="@color/backColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/btnBank"
-            app:layout_constraintStart_toStartOf="@+id/btnBank"
-            android:maxLength="9"/>
+            app:layout_constraintStart_toStartOf="@+id/btnBank" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -105,12 +105,12 @@
         android:id="@+id/mainSpend"
         android:layout_width="350dp"
         android:layout_height="180dp"
-        android:layout_marginTop="50dp"
         android:background="@drawable/rounded"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/cardPanel"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/cardPanel"
-        app:layout_constraintTop_toBottomOf="@+id/cardPanel">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.304">
 
         <ImageView
             android:id="@+id/house"
@@ -190,8 +190,8 @@
             android:layout_width="310dp"
             android:layout_height="13dp"
             android:layout_marginBottom="20dp"
-            android:progress="8500"
             android:max="10000"
+            android:progress="8500"
             android:progressDrawable="@drawable/custom_progress_bar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -202,12 +202,12 @@
         android:id="@+id/secondarySpend"
         android:layout_width="350dp"
         android:layout_height="180dp"
-        android:layout_marginTop="50dp"
         android:background="@drawable/rounded"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/cardPanel"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/cardPanel"
-        app:layout_constraintTop_toBottomOf="@+id/mainSpend">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.696">
 
         <ImageView
             android:id="@+id/coffee"
@@ -285,8 +285,8 @@
             android:layout_width="310dp"
             android:layout_height="13dp"
             android:layout_marginBottom="20dp"
-            android:progress="4000"
             android:max="10000"
+            android:progress="4000"
             android:progressDrawable="@drawable/custom_progress_bar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -297,12 +297,12 @@
         android:id="@+id/saving"
         android:layout_width="350dp"
         android:layout_height="80dp"
-        android:layout_marginTop="50dp"
         android:background="@drawable/rounded"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/cardPanel"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/cardPanel"
-        app:layout_constraintTop_toBottomOf="@+id/secondarySpend">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.93">
 
         <TextView
             android:id="@+id/savingText"
@@ -334,8 +334,8 @@
             android:layout_width="310dp"
             android:layout_height="13dp"
             android:layout_marginBottom="20dp"
-            android:progress="10000"
             android:max="10000"
+            android:progress="10000"
             android:progressDrawable="@drawable/custom_progress_bar2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
