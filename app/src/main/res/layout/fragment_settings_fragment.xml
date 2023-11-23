@@ -10,7 +10,8 @@
     <TextView
         android:id="@+id/textData"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="32dp"
+        android:gravity="center_vertical"
         android:layout_marginStart="70dp"
         android:layout_marginTop="50dp"
         android:fontFamily="@font/ubuntu_light"
@@ -23,7 +24,8 @@
     <TextView
         android:id="@+id/textSpashScreen"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="32dp"
+        android:gravity="center_vertical"
         android:layout_marginTop="40dp"
         android:fontFamily="@font/ubuntu_light"
         android:text="Включить заставку"
@@ -35,7 +37,8 @@
     <TextView
         android:id="@+id/clearPref"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="32dp"
+        android:gravity="center_vertical"
         android:layout_marginTop="40dp"
         android:fontFamily="@font/ubuntu_light"
         android:text="Стереть данные"
@@ -47,7 +50,8 @@
     <TextView
         android:id="@+id/textInfo"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="32dp"
+        android:gravity="center_vertical"
         android:layout_marginTop="40dp"
         android:fontFamily="@font/ubuntu_light"
         android:text="О нас"
@@ -71,7 +75,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imageDate"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginEnd="10dp"
@@ -81,7 +85,7 @@
         app:layout_constraintTop_toTopOf="@+id/textData" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/imageSplashScreen"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginEnd="10dp"
@@ -91,7 +95,7 @@
         app:layout_constraintTop_toTopOf="@+id/textSpashScreen" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/imageClearPref"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginEnd="10dp"
@@ -101,7 +105,7 @@
         app:layout_constraintTop_toTopOf="@+id/clearPref" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/imageInfo"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginEnd="10dp"
@@ -117,9 +121,23 @@
         android:layout_marginEnd="32dp"
         android:checked="true"
         android:thumb="@drawable/selector_switch_thumb"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+        app:layout_constraintBottom_toBottomOf="@+id/imageSplashScreen"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView4"
+        app:layout_constraintTop_toTopOf="@+id/imageSplashScreen"
         app:track="@drawable/selector_switch_track" />
+
+    <TextView
+        android:id="@+id/textSetDate"
+        android:layout_width="48dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="1"
+        android:textColor="@color/backColor"
+        android:textSize="18dp"
+        android:background="@drawable/rounded_toast"
+        app:layout_constraintBottom_toBottomOf="@+id/imageDate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageDate" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

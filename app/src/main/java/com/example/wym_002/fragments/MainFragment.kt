@@ -37,8 +37,6 @@ class MainFragment : Fragment() {
     private lateinit var customDialog: CustomDialogLayoutBinding
     lateinit var pref: SharedPreferences
 
-    private val calendar = Calendar.getInstance()
-
     var toast: Toast? = null
 
 
@@ -144,6 +142,8 @@ class MainFragment : Fragment() {
             dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             dialog.setContentView(customDialog.root)
             dialog.setCancelable(true)
+
+            val calendar = Calendar.getInstance()
 
             // указывается дата по умолчанию
             val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
@@ -263,11 +263,12 @@ class MainFragment : Fragment() {
     private fun showDataTimePicker(){
 
         val selectedDate = Calendar.getInstance()
+        val calendar = Calendar.getInstance()
 
-        DatePickerDialog(
+        val datePickerDialog = DatePickerDialog(
             this.activity!!, { DatePicker, year: Int, monthOfYear: Int, dayOfMonth: Int ->
 
-                TimePickerDialog(
+                val timePickerDialog = TimePickerDialog(
                     this.activity!!, { TimePicker, hourOfDay: Int, minute: Int ->
                         selectedDate.set(year, monthOfYear, dayOfMonth, hourOfDay, minute)
                         val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
@@ -279,13 +280,19 @@ class MainFragment : Fragment() {
                     calendar.get(Calendar.HOUR_OF_DAY),
                     calendar.get(Calendar.MINUTE),
                     false
-                ).show()
+                )
+
+                hidingPanel(timePickerDialog)
+                timePickerDialog.show()
 
             },
             calendar.get(Calendar.YEAR),
             calendar.get(Calendar.MONTH),
             calendar.get(Calendar.DAY_OF_MONTH)
-        ).show()
+        )
+
+        hidingPanel(datePickerDialog)
+        datePickerDialog.show()
 
     }
 

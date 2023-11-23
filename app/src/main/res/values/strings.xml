@@ -9,4 +9,5 @@
 
     <string name="keyTotalBalance">total</string>
     <string name="flagSplashScreen">flagSplashScreen</string>
+    <string name="setDateDay">setDateDay</string>
 </resources>
