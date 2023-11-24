@@ -86,8 +86,8 @@
     <style name="AppTheme.Picker" parent="Theme.AppCompat.Light.NoActionBar" >
         <item name="android:fontFamily">@font/ubuntu_light</item>
         <item name="android:textSize">18sp</item>
-        <item name="android:textColorPrimary">@color/secondaryWhite</item>
-        <item name="android:colorControlNormal">@color/backSelected</item>
+        <item name="android:textColorPrimary">@color/backColor</item>
+        <item name="android:colorControlNormal">@color/secondaryGrey</item>
     </style>
 
 </resources>
