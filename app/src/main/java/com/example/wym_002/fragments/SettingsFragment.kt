@@ -12,9 +12,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
 import android.widget.NumberPicker
+import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.wym_002.R
 import com.example.wym_002.databinding.CustomDialogLayoutBinding
+import com.example.wym_002.databinding.DialogDeleteBinding
+import com.example.wym_002.databinding.DialogInfoBinding
 import com.example.wym_002.databinding.DialogScrollDateBinding
 import com.example.wym_002.databinding.FragmentSettingsFragmentBinding
 import com.example.wym_002.hidingPanel
@@ -24,7 +28,11 @@ class SettingsFragment : Fragment() {
     private lateinit var binding: FragmentSettingsFragmentBinding
     private lateinit var dialog: Dialog
     private lateinit var dialogScrollDate: DialogScrollDateBinding
+    private lateinit var dialogMyInfo: DialogInfoBinding
+    private lateinit var dialogDelete: DialogDeleteBinding
     lateinit var pref: SharedPreferences
+
+    var toast: Toast? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,7 +81,7 @@ class SettingsFragment : Fragment() {
             it.startAnimation(buttonClick2)
             it.visibility = View.VISIBLE
 
-            // TODO(нужно сделать переброс на диалоговое окно)
+            showDialogMyInfo()
 
         }
 
@@ -83,9 +91,26 @@ class SettingsFragment : Fragment() {
             it.startAnimation(buttonClick2)
             it.visibility = View.VISIBLE
 
-            // TODO(нужно сделать переброс на диалоговое окно)
+            showDialogMyInfo()
 
         }
+
+    }
+
+    private fun showDialogMyInfo() {
+
+        dialogMyInfo = DialogInfoBinding.inflate(layoutInflater)
+        dialog = Dialog(this.activity!!)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.setContentView(dialogMyInfo.root)
+        dialog.setCancelable(true)
+
+        dialogMyInfo.dialogBtn.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        hidingPanel(dialog)
+        dialog.show()
 
     }
 
@@ -153,6 +178,7 @@ class SettingsFragment : Fragment() {
 
         dialogScrollDate.dialogBtn.setOnClickListener {
 
+            // СОХРАНЯЕТСЯ ДЕНЬ НАЧАЛА УЧЕТА!!!
             saveData(getString(R.string.setDateDay), res)
             dialog.dismiss()
             val setDate = pref.getInt(getString(R.string.setDateDay), 0) + 1
@@ -222,8 +248,7 @@ class SettingsFragment : Fragment() {
         }
     }
 
-    private fun buttonToClear() {    // TODO(УБРАТЬ И ПЕРЕДЕЛАТЬ)
-        // TODO(ДОБАВИТЬ УДАЛЕНИЕ БД)
+    private fun buttonToClear() {
 
         // параметры анимации нажатия
         val buttonClick1 = AlphaAnimation(1f, 0.7f)
@@ -240,10 +265,7 @@ class SettingsFragment : Fragment() {
             it.startAnimation(buttonClick2)
             it.visibility = View.VISIBLE
 
-            // TODO(нужно сделать переброс на диалоговое окно)
-            clearPref()
-
-            updatingVariables()
+            showDialogDelete()
 
         }
 
@@ -253,12 +275,52 @@ class SettingsFragment : Fragment() {
             it.startAnimation(buttonClick2)
             it.visibility = View.VISIBLE
 
-            // TODO(нужно сделать переброс на диалоговое окно)
-            clearPref()
-
-            updatingVariables()
+            showDialogDelete()
 
         }
+
+    }
+
+    private fun showDialogDelete() {     // TODO(ДОБАВИТЬ УДАЛЕНИЕ ДАННЫХ ИЗ БД)
+
+        val buttonClick1 = AlphaAnimation(1f, 0.7f)
+        buttonClick1.duration = 160
+        buttonClick1.fillAfter = false
+        val buttonClick2 = AlphaAnimation(0.7f, 1f)
+        buttonClick2.duration = 50
+        buttonClick2.fillAfter = true
+        buttonClick2.startOffset = 70
+
+        dialogDelete = DialogDeleteBinding.inflate(layoutInflater)
+        dialog = Dialog(this.activity!!)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.setContentView(dialogDelete.root)
+        dialog.setCancelable(true)
+
+        dialogDelete.dialogBtnYes.setOnClickListener {
+
+            it.startAnimation(buttonClick1)
+            it.startAnimation(buttonClick2)
+            it.visibility = View.VISIBLE
+
+            showToastMsg(getString(R.string.deleteData))
+
+            // TODO(ВОТ ЗДЕСЬ!)
+
+            clearPref()
+            updatingVariables()
+            dialog.dismiss()
+
+        }
+
+        dialogDelete.dialogBtnCancel.setOnClickListener {
+
+            dialog.dismiss()
+
+        }
+
+        hidingPanel(dialog)
+        dialog.show()
 
     }
 
@@ -281,6 +343,23 @@ class SettingsFragment : Fragment() {
 
         val setDate = pref.getInt(getString(R.string.setDateDay), 0) + 1
         binding.textSetDate.text = setDate.toString()
+
+    }
+
+    private fun showToastMsg(string: String) {
+
+        val container = this.activity!!.findViewById<ViewGroup>(R.id.custom_toast_container)
+        val layout = layoutInflater.inflate(R.layout.custom_toast, container)
+        val text: TextView = layout.findViewById(R.id.text)
+        text.text = string
+
+        if (toast != null){
+            toast!!.cancel()
+        }
+        toast = Toast(this.activity!!.applicationContext)
+        toast!!.duration = Toast.LENGTH_SHORT
+        toast!!.view = layout
+        toast!!.show()
 
     }
 

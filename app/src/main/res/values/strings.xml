@@ -6,8 +6,11 @@
     <string name="plsEnterSumCorrect">Введите корректную сумму!</string>
     <string name="plsNoMoney">Недостаточно средств!</string>
     <string name="plsEnterSpend">Опишите трату!</string>
+    <string name="deleteData">Данные успешно удалены!</string>
 
     <string name="keyTotalBalance">total</string>
     <string name="flagSplashScreen">flagSplashScreen</string>
     <string name="setDateDay">setDateDay</string>
+
+    <string name="myInfo">Данное приложение создал\nстудент 2 курса Ульяновского\nгосударственного университета\nфакультета математики,\nинформационных и авиационных\nтехнологий группы МОАИС-О-22/1\nБаринов Вадим</string>
 </resources>
