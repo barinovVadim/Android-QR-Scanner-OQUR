@@ -21,6 +21,7 @@ import com.example.wym_002.databinding.DialogDeleteBinding
 import com.example.wym_002.databinding.DialogInfoBinding
 import com.example.wym_002.databinding.DialogScrollDateBinding
 import com.example.wym_002.databinding.FragmentSettingsFragmentBinding
+import com.example.wym_002.db.MainDb
 import com.example.wym_002.hidingPanel
 
 class SettingsFragment : Fragment() {
@@ -34,6 +35,8 @@ class SettingsFragment : Fragment() {
 
     var toast: Toast? = null
 
+    lateinit var db: MainDb
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,11 +44,13 @@ class SettingsFragment : Fragment() {
 
         binding = FragmentSettingsFragmentBinding.inflate(layoutInflater)
 
+        db = MainDb.getDb(this.activity!!)
+
         pref = context!!.getSharedPreferences("pref", Context.MODE_PRIVATE)
         // resultCardBalance        key: R.drawable.credit_card_white.toString()
         // resultWalletBalance      key: R.drawable.wallet_white.toString()
         // resultBankBalance        key: R.drawable.account_balance_white.toString()
-        // resultTotalBalance       key: getString(R.string.keyTotalBalance)
+        //
         // checkSplashScreen        key: getString(R.string.flagSplashScreen)      ОБРАТНЫЕ ПЕРЕМЕННЫЕ
         //                                                                        0 == TRUE   1 == FALSE
         // setDateDay               key: getString(R.string.setDateDay)
@@ -281,7 +286,7 @@ class SettingsFragment : Fragment() {
 
     }
 
-    private fun showDialogDelete() {     // TODO(ДОБАВИТЬ УДАЛЕНИЕ ДАННЫХ ИЗ БД)
+    private fun showDialogDelete() {
 
         val buttonClick1 = AlphaAnimation(1f, 0.7f)
         buttonClick1.duration = 160
@@ -305,7 +310,9 @@ class SettingsFragment : Fragment() {
 
             showToastMsg(getString(R.string.deleteData))
 
-            // TODO(ВОТ ЗДЕСЬ!)
+            Thread{
+                db.getDao().deleteAll()
+            }.start()
 
             clearPref()
             updatingVariables()

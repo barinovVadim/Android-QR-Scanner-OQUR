@@ -26,7 +26,7 @@ class SplashScreenActivity : AppCompatActivity() {
         // resultCardBalance        key: R.drawable.credit_card_white.toString()
         // resultWalletBalance      key: R.drawable.wallet_white.toString()
         // resultBankBalance        key: R.drawable.account_balance_white.toString()
-        // resultTotalBalance       key: getString(R.string.keyTotalBalance)
+        //
         // checkSplashScreen        key: getString(R.string.flagSplashScreen)      ОБРАТНЫЕ ПЕРЕМЕННЫЕ
         //                                                                        0 == TRUE   1 == FALSE
         // setDateDay               key: getString(R.string.setDateDay)

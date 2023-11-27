@@ -21,10 +21,13 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.asLiveData
 import com.example.wym_002.R
 import com.example.wym_002.databinding.CustomCashDialogLayoutBinding
 import com.example.wym_002.databinding.CustomDialogLayoutBinding
 import com.example.wym_002.databinding.FragmentMainFragmentBinding
+import com.example.wym_002.db.MainDb
+import com.example.wym_002.db.Spends
 import com.example.wym_002.hidingPanel
 import java.text.SimpleDateFormat
 import java.util.*
@@ -37,8 +40,9 @@ class MainFragment : Fragment() {
     private lateinit var customDialog: CustomDialogLayoutBinding
     lateinit var pref: SharedPreferences
 
-    var toast: Toast? = null
+    private var toast: Toast? = null
 
+    lateinit var db: MainDb
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,11 +50,13 @@ class MainFragment : Fragment() {
     ): View {
         binding = FragmentMainFragmentBinding.inflate(layoutInflater)
 
+        db = MainDb.getDb(this.activity!!)
+
         pref = context!!.getSharedPreferences("pref", Context.MODE_PRIVATE)
         // resultCardBalance        key: R.drawable.credit_card_white.toString()
         // resultWalletBalance      key: R.drawable.wallet_white.toString()
         // resultBankBalance        key: R.drawable.account_balance_white.toString()
-        // resultTotalBalance       key: getString(R.string.keyTotalBalance)
+        //
         // checkSplashScreen        key: getString(R.string.flagSplashScreen)      ОБРАТНЫЕ ПЕРЕМЕННЫЕ
         //                                                                        0 == TRUE   1 == FALSE
         // setDateDay               key: getString(R.string.setDateDay)
@@ -103,16 +109,34 @@ class MainFragment : Fragment() {
         val resultWalletBalance = pref.getInt(R.drawable.wallet_white.toString(), 0)
         val resultBankBalance = pref.getInt(R.drawable.account_balance_white.toString(), 0)
 
-        val resultTotalBalance = pref.getInt(getString(R.string.keyTotalBalance), 0)
+        val calendar = Calendar.getInstance()                  // формируется ключ
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val textDate = dateFormat.format(calendar.time)
+
+        Thread {
+            val resultTotalBalance = when (db.getDao().getBudgetData(textDate.toString())) {
+                null -> 0
+                else -> db.getDao().getBudgetData(textDate.toString())
+            }
+
+
+            // TODO(ДОПИСАТЬ ПОДСЧЕТ ЛИМИТОВ чтобы менялись при выходе за рамки и тд)
+            binding.mainPr.text = (resultTotalBalance!! * 0.5).toInt().toString()
+            binding.secondaryPr.text = (resultTotalBalance * 0.3).toInt().toString()
+            Thread {
+                binding.spendPr.text = when (db.getDao().getSavingData(textDate.toString())) {
+                null -> "0"
+                else -> db.getDao().getSavingData(textDate.toString()).toString()
+            }
+            }.start()
+        }.start()
+
 
         binding.cardBalance.text = resultCardBalance.toString()
         binding.walletBalance.text = resultWalletBalance.toString()
         binding.bankBalance.text = resultBankBalance.toString()
 
-        // TODO(ДОПИСАТЬ ПОДСЧЕТ ЛИМИТОВ чтобы менялись при выходе за рамки и тд)
-        binding.mainPr.text = (resultTotalBalance * 0.5).toInt().toString()
-        binding.secondaryPr.text = (resultTotalBalance * 0.3).toInt().toString()
-        binding.spendPr.text = (resultTotalBalance * 0.2).toInt().toString()
 
     }
 
@@ -169,6 +193,7 @@ class MainFragment : Fragment() {
                             if (spend.isNotEmpty()) {       // TODO(сделать добавление в бд)
 
                                 val dataToSave = Integer.parseInt(balance.text.toString()) - Integer.parseInt(res)
+                                // пересчитывает баланс на картах
                                 saveData(drawableIconKey.toString(), dataToSave)
 
                                 dialog.dismiss()
@@ -380,12 +405,31 @@ class MainFragment : Fragment() {
             if (res.isNotEmpty()) {
 
                 if (Integer.parseInt(res) != 0) {
+
+                    val calendar = Calendar.getInstance()                  // формируется ключ
+                    calendar.set(Calendar.DAY_OF_MONTH, 1);
+                    val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                    val textDate = dateFormat.format(calendar.time)
+
+
                     val past = pref.getInt(drawableIcon.toString(), 0)
-                    val pastTotal = pref.getInt(getString(R.string.keyTotalBalance), 0)
+                    Thread{
+                        val pastTotal = when (db.getDao().getBudgetData(textDate.toString())) {
+                            null -> 0
+                            else -> db.getDao().getBudgetData(textDate.toString())
+                        }
+                        val spend = Spends(
+                            textDate.toString(),
+                            ((pastTotal!! + Integer.parseInt(res)) * 0.2).toInt(),// TODO(нужно считать сбережения)
+                            pastTotal + Integer.parseInt(res)
+                        )
+                        Thread{
+                            db.getDao().insertSpend(spend)
+                        }.start()
+                    }.start()
+
                     saveData(drawableIcon.toString(), (past + Integer.parseInt(res)))
 
-                    // добавляет в начальный баланс новые финансы
-                    saveData(getString(R.string.keyTotalBalance), (pastTotal + Integer.parseInt(res)))
 
                     dialog.dismiss()
 
