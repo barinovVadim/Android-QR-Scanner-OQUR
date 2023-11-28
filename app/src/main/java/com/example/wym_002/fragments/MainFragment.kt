@@ -659,6 +659,17 @@ class MainFragment : Fragment() {
 
                         }
 
+                        if (pref.getInt("secondMax", 0) <= 0){
+
+                            saveData("secondMax", 0)
+                            saveData("secondProgress", 0)
+
+                            saveData("secondColor", R.drawable.custom_progress_bar3)
+                            binding.progressBarSecondary.progressDrawable = resources.getDrawable(
+                                pref.getInt("secondColor", R.drawable.custom_progress_bar2))
+
+                        }
+
                     }
                     else {
 
@@ -709,6 +720,17 @@ class MainFragment : Fragment() {
                             pref.getInt("savingColor", R.drawable.custom_progress_bar2))
 
                         if (pref.getInt("mainMax", 0) == pref.getInt("mainProgress", 0)){
+
+                            saveData("mainColor", R.drawable.custom_progress_bar3)
+                            binding.progressBarMain.progressDrawable = resources.getDrawable(
+                                pref.getInt("mainColor", R.drawable.custom_progress_bar2))
+
+                        }
+
+                        if (pref.getInt("mainMax", 0) <= 0){
+
+                            saveData("mainMax", 0)
+                            saveData("mainProgress", 0)
 
                             saveData("mainColor", R.drawable.custom_progress_bar3)
                             binding.progressBarMain.progressDrawable = resources.getDrawable(
