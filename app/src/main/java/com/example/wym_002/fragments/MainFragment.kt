@@ -195,6 +195,23 @@ class MainFragment : Fragment() {
 
     }
 
+    private fun showToastMsgRed(string: String) {
+
+        val container = this.activity!!.findViewById<ViewGroup>(R.id.custom_toast_container)
+        val layout = layoutInflater.inflate(R.layout.custom_toast_red, container)
+        val text: TextView = layout.findViewById(R.id.text)
+        text.text = string
+
+        if (toast != null){
+            toast!!.cancel()
+        }
+        toast = Toast(this.activity!!.applicationContext)
+        toast!!.duration = Toast.LENGTH_LONG
+        toast!!.view = layout
+        toast!!.show()
+
+    }
+
     private fun startFunc(image: ImageView, drawableIcon: Int){
 
         fun showCustomDialog(balance: TextView, drawableIconKey: Int) {
@@ -289,7 +306,7 @@ class MainFragment : Fragment() {
                                     Integer.parseInt(res)
                                 )
 
-                                // TODO (ДОБАВЛЯЕТ В БД)
+                                // ДОБАВЛЯЕТ ЗАПСИСЬ В БД
                                 Thread { db.getDao().insertItem(item) }.start()
 
                                 dialog.dismiss()
@@ -596,90 +613,120 @@ class MainFragment : Fragment() {
         // progressBarSavingMax             key: savingMax
         // progressBarSavingColor             key: savingColor
 
+
         when (key) {
             "main" -> {
                 val resForSave = pref.getInt("mainProgress", 0) + res
-                if (pref.getInt("mainMax", 0) >= resForSave){
+                val resMinus = pref.getInt("mainMax", 0) - resForSave
+
+                if (resMinus > 0){
                     saveData("mainProgress", resForSave)
                 }
-                else {
-                    val savingPast = pref.getInt("savingProgress", 0)
+                else if (resMinus == 0){
+                    saveData("mainProgress", resForSave)
+                    saveData("mainColor", R.drawable.custom_progress_bar3)
+                    binding.progressBarMain.progressDrawable = resources.getDrawable(
+                        pref.getInt("mainColor", R.drawable.custom_progress_bar))
 
-                    if(savingPast - res >= 0){
-                        saveData("mainMax", resForSave)
-                        saveData("mainProgress", resForSave)
-                        saveData("savingProgress", (savingPast - res))
+                }
+                else{
 
-                        saveData("mainColor", R.drawable.custom_progress_bar3)
+                    showToastMsgRed(getString(R.string.limitError))
+
+                    saveData("mainProgress", resForSave)
+                    saveData("mainMax", resForSave)
+
+                    saveData("mainColor", R.drawable.custom_progress_bar3)
+                    binding.progressBarMain.progressDrawable = resources.getDrawable(
+                        pref.getInt("mainColor", R.drawable.custom_progress_bar))
+
+                    val resMinusSaving = pref.getInt("savingProgress", 0) + resMinus
+
+                    if (resMinusSaving < 0 ){
+
+                        saveData("savingProgress", 0)
+                        saveData("secondMax", pref.getInt("secondMax", 0) + resMinusSaving)
+
                         saveData("savingColor", R.drawable.custom_progress_bar3)
-
-                        binding.progressBarMain.progressDrawable = resources.getDrawable(
-                            pref.getInt("mainColor", R.drawable.custom_progress_bar))
                         binding.progressBarSaving.progressDrawable = resources.getDrawable(
                             pref.getInt("savingColor", R.drawable.custom_progress_bar2))
+
+                        if (pref.getInt("secondMax", 0) == pref.getInt("secondProgress", 0)){
+
+                            saveData("secondColor", R.drawable.custom_progress_bar3)
+                            binding.progressBarSecondary.progressDrawable = resources.getDrawable(
+                                pref.getInt("secondColor", R.drawable.custom_progress_bar2))
+
+                        }
+
                     }
                     else {
-                        saveData("mainMax", resForSave)
-                        saveData("mainProgress", resForSave)
-                        saveData("savingProgress", 0)
-                        val secondPast = pref.getInt("secondMax", 0)
-                        var dataToSave = 0
-                        if (secondPast - (res - savingPast) > 0) {
-                            dataToSave = secondPast - (res - savingPast)
-                        }
-                        saveData("secondMax", dataToSave)
 
-                        saveData("mainColor", R.drawable.custom_progress_bar3)
+                        saveData("savingProgress", resMinusSaving)
                         saveData("savingColor", R.drawable.custom_progress_bar3)
-
-                        binding.progressBarMain.progressDrawable = resources.getDrawable(
-                            pref.getInt("mainColor", R.drawable.custom_progress_bar))
                         binding.progressBarSaving.progressDrawable = resources.getDrawable(
                             pref.getInt("savingColor", R.drawable.custom_progress_bar2))
+
                     }
                 }
+
             }
             // "second"
             else -> {
+
                 val resForSave = pref.getInt("secondProgress", 0) + res
-                if (pref.getInt("secondMax", 0) >= resForSave) {
+                val resMinus = pref.getInt("secondMax", 0) - resForSave
+
+                if (resMinus > 0){
                     saveData("secondProgress", resForSave)
-                } else {
-                    val savingPast = pref.getInt("savingProgress", 0)
+                }
+                else if (resMinus == 0){
+                    saveData("secondProgress", resForSave)
+                    saveData("secondColor", R.drawable.custom_progress_bar3)
+                    binding.progressBarSecondary.progressDrawable = resources.getDrawable(
+                        pref.getInt("secondColor", R.drawable.custom_progress_bar))
+                }
+                else{
 
-                    if (savingPast - res >= 0) {
-                        saveData("secondMax", resForSave)
-                        saveData("secondProgress", resForSave)
-                        saveData("savingProgress", (savingPast - res))
+                    showToastMsgRed(getString(R.string.limitError))
 
-                        saveData("secondColor", R.drawable.custom_progress_bar3)
-                        saveData("savingColor", R.drawable.custom_progress_bar3)
+                    saveData("secondProgress", resForSave)
+                    saveData("secondMax", resForSave)
 
-                        binding.progressBarSecondary.progressDrawable = resources.getDrawable(
-                            pref.getInt("secondColor", R.drawable.custom_progress_bar))
-                        binding.progressBarSaving.progressDrawable = resources.getDrawable(
-                            pref.getInt("savingColor", R.drawable.custom_progress_bar2))
+                    saveData("secondColor", R.drawable.custom_progress_bar3)
+                    binding.progressBarSecondary.progressDrawable = resources.getDrawable(
+                        pref.getInt("secondColor", R.drawable.custom_progress_bar))
 
-                    } else {
-                        saveData("secondMax", resForSave)
-                        saveData("secondProgress", resForSave)
+                    val resMinusSaving = pref.getInt("savingProgress", 0) + resMinus
+
+                    if (resMinusSaving < 0 ){
+
                         saveData("savingProgress", 0)
-                        val mainPast = pref.getInt("mainMax", 0)
-                        var dataToSave = 0
-                        if (mainPast - (res - savingPast) > 0) {
-                            dataToSave = mainPast - (res - savingPast)
-                        }
-                        saveData("mainMax", dataToSave)
+                        saveData("mainMax", pref.getInt("mainMax", 0) + resMinusSaving)
 
-                        saveData("secondColor", R.drawable.custom_progress_bar3)
                         saveData("savingColor", R.drawable.custom_progress_bar3)
-
-                        binding.progressBarSecondary.progressDrawable = resources.getDrawable(
-                            pref.getInt("secondColor", R.drawable.custom_progress_bar))
                         binding.progressBarSaving.progressDrawable = resources.getDrawable(
                             pref.getInt("savingColor", R.drawable.custom_progress_bar2))
+
+                        if (pref.getInt("mainMax", 0) == pref.getInt("mainProgress", 0)){
+
+                            saveData("mainColor", R.drawable.custom_progress_bar3)
+                            binding.progressBarMain.progressDrawable = resources.getDrawable(
+                                pref.getInt("mainColor", R.drawable.custom_progress_bar2))
+
+                        }
+
+                    }
+                    else {
+
+                        saveData("savingProgress", resMinusSaving)
+                        saveData("savingColor", R.drawable.custom_progress_bar3)
+                        binding.progressBarSaving.progressDrawable = resources.getDrawable(
+                            pref.getInt("savingColor", R.drawable.custom_progress_bar2))
+
                     }
                 }
+
             }
         }
 

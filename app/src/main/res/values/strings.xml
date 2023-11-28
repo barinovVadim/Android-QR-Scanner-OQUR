@@ -7,6 +7,7 @@
     <string name="plsNoMoney">Недостаточно средств!</string>
     <string name="plsEnterSpend">Опишите трату!</string>
     <string name="deleteData">Данные успешно удалены!</string>
+    <string name="limitError">Вы вышли за предел!</string>
 
     <string name="house">Все для дома</string>
     <string name="bus">Транспорт</string>

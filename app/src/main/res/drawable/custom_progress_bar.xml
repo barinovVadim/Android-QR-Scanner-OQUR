@@ -22,7 +22,7 @@
                     <shape android:shape="rectangle">
                         <corners android:radius="6dp"/>
                         <gradient
-                            android:centerY="0.6"
+                            android:centerY="0.5"
                             android:centerColor="@color/colorPrimary"
                             android:endColor="@color/redHolo"
                             android:startColor="@color/colorPrimary"

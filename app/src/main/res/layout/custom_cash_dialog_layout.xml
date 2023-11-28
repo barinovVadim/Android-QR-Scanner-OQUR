@@ -39,6 +39,7 @@
                 android:background="@drawable/rounded_enter_dialog"
                 android:fontFamily="@font/ubuntu_light"
                 android:hint="Введите сумму..."
+                android:digits="0123456789"
                 android:inputType="numberSigned"
                 android:paddingLeft="10dp"
                 android:singleLine="true"
