@@ -1,5 +1,6 @@
 package com.example.wym_002.fragments
 
+
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.Dialog
@@ -15,22 +16,22 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.*
 import android.view.animation.AlphaAnimation
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.view.animation.Animation
+import android.view.animation.Transformation
+import android.widget.*
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.asLiveData
 import com.example.wym_002.R
 import com.example.wym_002.databinding.CustomCashDialogLayoutBinding
 import com.example.wym_002.databinding.CustomDialogLayoutBinding
 import com.example.wym_002.databinding.FragmentMainFragmentBinding
+import com.example.wym_002.db.Items
 import com.example.wym_002.db.MainDb
 import com.example.wym_002.db.Spends
 import com.example.wym_002.hidingPanel
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 class MainFragment : Fragment() {
 
@@ -57,12 +58,19 @@ class MainFragment : Fragment() {
         // resultWalletBalance      key: R.drawable.wallet_white.toString()
         // resultBankBalance        key: R.drawable.account_balance_white.toString()
         //
+        // progressBarMainProgress          key: mainProgress
+        // progressBarMainMax               key: mainMax
+        // progressBarMainColor               key: mainColor
+        // progressBarSecondProgress        key: secondProgress
+        // progressBarSecondMax             key: secondMax
+        // progressBarSecondColor             key: secondColor
+        // progressBarSavingProgress        key: savingProgress
+        // progressBarSavingMax             key: savingMax
+        // progressBarSavingColor             key: savingColor
+        //
         // checkSplashScreen        key: getString(R.string.flagSplashScreen)      ОБРАТНЫЕ ПЕРЕМЕННЫЕ
         //                                                                        0 == TRUE   1 == FALSE
         // setDateDay               key: getString(R.string.setDateDay)
-
-
-        updatingVariables()
 
         attachViewDragListenerAllIems()
 
@@ -72,7 +80,14 @@ class MainFragment : Fragment() {
     }
 
 
-    // TODO("нужно сделать рабочие прогресс бары и чтобы считались лимиты")
+    // TODO(НУЖНО СДЕЛАТЬ ОБНУЛЕНИЕ СЧЕТЧИКОВ В УКАЗАННЫЙ ДЕНЬ!!!)
+    // TODO( + ПЕРЕСЧИТЫВАТЬ СБЕРЕЖЕНИЯ ЗА ПРОШЛЫЙ МЕСЯЦ!!!)
+
+    override fun onStart() {
+        super.onStart()
+        updatingVariables()         // чтобы каждый раз не считалось
+    }
+
 
 
     private fun attachViewDragListenerAllIems() {
@@ -103,40 +118,62 @@ class MainFragment : Fragment() {
     }
 
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private fun updatingVariables() {       // обновляет счетчики на экране
 
         val resultCardBalance = pref.getInt(R.drawable.credit_card_white.toString(), 0)
         val resultWalletBalance = pref.getInt(R.drawable.wallet_white.toString(), 0)
         val resultBankBalance = pref.getInt(R.drawable.account_balance_white.toString(), 0)
 
-        val calendar = Calendar.getInstance()                  // формируется ключ
-        calendar.set(Calendar.DAY_OF_MONTH, 1);
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-        val textDate = dateFormat.format(calendar.time)
-
-        Thread {
-            val resultTotalBalance = when (db.getDao().getBudgetData(textDate.toString())) {
-                null -> 0
-                else -> db.getDao().getBudgetData(textDate.toString())
-            }
-
-
-            // TODO(ДОПИСАТЬ ПОДСЧЕТ ЛИМИТОВ чтобы менялись при выходе за рамки и тд)
-            binding.mainPr.text = (resultTotalBalance!! * 0.5).toInt().toString()
-            binding.secondaryPr.text = (resultTotalBalance * 0.3).toInt().toString()
-            Thread {
-                binding.spendPr.text = when (db.getDao().getSavingData(textDate.toString())) {
-                null -> "0"
-                else -> db.getDao().getSavingData(textDate.toString()).toString()
-            }
-            }.start()
-        }.start()
-
-
         binding.cardBalance.text = resultCardBalance.toString()
         binding.walletBalance.text = resultWalletBalance.toString()
         binding.bankBalance.text = resultBankBalance.toString()
 
+
+
+        // progressBarMainProgress          key: mainProgress
+        // progressBarMainMax               key: mainMax
+        // progressBarSecondProgress        key: secondProgress
+        // progressBarSecondMax             key: secondMax
+        // progressBarSavingProgress        key: savingProgress
+        // progressBarSavingMax             key: savingMax
+
+        val animMain = ProgressBarAnimation(binding.progressBarMain,
+            binding.progressBarMain.progress.toFloat(), pref.getInt("mainProgress", 0).toFloat()
+        )
+        animMain.duration = 500
+
+        val animSecond = ProgressBarAnimation(binding.progressBarSecondary,
+            binding.progressBarSecondary.progress.toFloat(), pref.getInt("secondProgress", 0).toFloat()
+        )
+        animSecond.duration = 500
+
+        val animSaving = ProgressBarAnimation(binding.progressBarSaving,
+            binding.progressBarSaving.progress.toFloat(), pref.getInt("savingProgress", 0).toFloat()
+        )
+        animSaving.duration = 500
+
+        binding.mainPr.text = pref.getInt("mainMax", 0).toString()
+        binding.progressBarMain.max = pref.getInt("mainMax", 0)
+        binding.progressBarMain.startAnimation(animMain)
+        binding.progressBarMain.progress = pref.getInt("mainProgress", 0)
+
+        binding.secondaryPr.text = pref.getInt("secondMax", 0).toString()
+        binding.progressBarSecondary.max = pref.getInt("secondMax", 0)
+        binding.progressBarSecondary.startAnimation(animSecond)
+        binding.progressBarSecondary.progress = pref.getInt("secondProgress", 0)
+
+        binding.spendPr.text = pref.getInt("savingProgress", 0).toString()
+        binding.progressBarSaving.max = pref.getInt("savingMax", 0)
+        binding.progressBarSaving.startAnimation(animSaving)
+        binding.progressBarSaving.progress = pref.getInt("savingProgress", 0)
+
+        binding.progressBarMain.progressDrawable = resources.getDrawable(
+            pref.getInt("mainColor", R.drawable.custom_progress_bar))
+        binding.progressBarSecondary.progressDrawable = resources.getDrawable(
+            pref.getInt("secondColor", R.drawable.custom_progress_bar))
+        binding.progressBarSaving.progressDrawable = resources.getDrawable(
+            pref.getInt("savingColor", R.drawable.custom_progress_bar2))
 
     }
 
@@ -163,7 +200,21 @@ class MainFragment : Fragment() {
         fun showCustomDialog(balance: TextView, drawableIconKey: Int) {
 
             customDialog = CustomDialogLayoutBinding.inflate(layoutInflater)
+
             customDialog.iconOnDialog.setImageResource(drawableIcon)
+            customDialog.textShowCat.text = when (drawableIcon){
+
+                R.drawable.house_white -> { getString(R.string.house) }
+                R.drawable.bus_white -> { getString(R.string.bus) }
+                R.drawable.food_house_white -> { getString(R.string.food_house) }
+                R.drawable.health_white -> { getString(R.string.health) }
+                R.drawable.coffee_white -> { getString(R.string.coffee) }
+                R.drawable.games_white -> { getString(R.string.games) }
+                R.drawable.clothes_white -> { getString(R.string.clothes) }
+                else -> { getString(R.string.another) }
+
+            }
+
             dialog = Dialog(this.activity!!)
             dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             dialog.setContentView(customDialog.root)
@@ -178,23 +229,68 @@ class MainFragment : Fragment() {
             val textTime = "Время: ${timeFormat.format(calendar.time)}"
             customDialog.enterData.text = "$textDate        $textTime"
 
+            val dateFormatForReturn = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
+            var dataTimeSelected = calendar
+
             customDialog.enterData.setOnClickListener {
-                showDataTimePicker()
+                dataTimeSelected = showDataTimePicker()
             }
 
             customDialog.dialogBtn.setOnClickListener {
 
                 val res = customDialog.enterSum.text.toString()   // сумма траты
-                val spend = customDialog.enterCat.text.toString() // категория траты
+                val spendCat = customDialog.enterCat.text.toString() // категория траты
+
+                val keyCatForPref = when (drawableIcon){     // main or second
+
+                    R.drawable.house_white-> { "main" }
+                    R.drawable.bus_white -> { "main" }
+                    R.drawable.food_house_white-> { "main" }
+                    R.drawable.health_white -> { "main" }
+                    else -> { "second" }
+
+                }
 
                 if (res.isNotEmpty()) {
                     if(Integer.parseInt(res) != 0){
                         if (Integer.parseInt(balance.text.toString()) >= Integer.parseInt(res)) {
-                            if (spend.isNotEmpty()) {       // TODO(сделать добавление в бд)
+                            if (spendCat.isNotEmpty()) {
 
-                                val dataToSave = Integer.parseInt(balance.text.toString()) - Integer.parseInt(res)
-                                // пересчитывает баланс на картах
-                                saveData(drawableIconKey.toString(), dataToSave)
+                                val dataTimeSelectedString = dateFormatForReturn.format(dataTimeSelected.time)
+
+                                // проверка на добавление траты за другой месяц
+                                if (calcDate(dataTimeSelected) == calcDate(calendar)) {
+                                    val dataToSave =
+                                        Integer.parseInt(balance.text.toString()) - Integer.parseInt(res)
+                                    // пересчитывает баланс на картах
+                                    saveData(drawableIconKey.toString(), dataToSave)
+
+                                    calcProgressBar(keyCatForPref, Integer.parseInt(res))
+                                }
+
+                                val cardKeyForDb = when (drawableIconKey) {
+                                    R.drawable.credit_card_white -> {
+                                        "card"
+                                    }
+                                    R.drawable.wallet_white -> {
+                                        "wallet"
+                                    }
+                                    else -> {
+                                        "account"
+                                    }
+                                }
+
+                                val item = Items(     // создает элемент для добавления
+                                    null,
+                                    dataTimeSelectedString,
+                                    spendCat,
+                                    customDialog.textShowCat.text.toString(),
+                                    cardKeyForDb,
+                                    Integer.parseInt(res)
+                                )
+
+                                // TODO (ДОБАВЛЯЕТ В БД)
+                                Thread { db.getDao().insertItem(item) }.start()
 
                                 dialog.dismiss()
 
@@ -287,7 +383,7 @@ class MainFragment : Fragment() {
 
     }
 
-    private fun showDataTimePicker(){
+    private fun showDataTimePicker(): Calendar{
 
         val selectedDate = Calendar.getInstance()
         val calendar = Calendar.getInstance()
@@ -320,6 +416,8 @@ class MainFragment : Fragment() {
 
         hidingPanel(datePickerDialog)
         datePickerDialog.show()
+
+        return selectedDate
 
     }
 
@@ -406,30 +504,29 @@ class MainFragment : Fragment() {
 
                 if (Integer.parseInt(res) != 0) {
 
-                    val calendar = Calendar.getInstance()                  // формируется ключ
-                    calendar.set(Calendar.DAY_OF_MONTH, 1);
-                    val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-                    val textDate = dateFormat.format(calendar.time)
-
+                    val textDate = calcDate(Calendar.getInstance())    // формируется ключ
 
                     val past = pref.getInt(drawableIcon.toString(), 0)
+
+                    saveData(drawableIcon.toString(), (past + Integer.parseInt(res)))
+
+                    calcProgressBarPlus(Integer.parseInt(res))
+
                     Thread{
-                        val pastTotal = when (db.getDao().getBudgetData(textDate.toString())) {
+                        val pastTotal = when (db.getDao().getBudgetData(textDate)) {
                             null -> 0
-                            else -> db.getDao().getBudgetData(textDate.toString())
+                            else -> db.getDao().getBudgetData(textDate)
                         }
+
                         val spend = Spends(
-                            textDate.toString(),
-                            ((pastTotal!! + Integer.parseInt(res)) * 0.2).toInt(),// TODO(нужно считать сбережения)
-                            pastTotal + Integer.parseInt(res)
+                            textDate,
+                            pref.getInt("savingMax", 0),
+                            pastTotal!! + Integer.parseInt(res)
                         )
                         Thread{
                             db.getDao().insertSpend(spend)
                         }.start()
                     }.start()
-
-                    saveData(drawableIcon.toString(), (past + Integer.parseInt(res)))
-
 
                     dialog.dismiss()
 
@@ -455,6 +552,181 @@ class MainFragment : Fragment() {
 
     }
 
+    private fun calcDate(calendar: Calendar): String{
+
+        // ЕСЛИ ДАТА БОЛЬШЕ ИЛИ РАВНА ДАТЕ НАЧАЛА УЧЕТА, ТО БЮДЖЕТ ДОБАВЛЯЕТСЯ В ПЕРВЫЙ ДЕНЬ ТЕКУЩЕГО МЕСЯЦА
+        // ЕСЛИ ЖЕ ДАТА МИНЬШЕ, ТО БЮДЖЕТ ДОБАВЛЯЕСЯ В ПЕРВОЕ ЧИСЛО ПРОШЛОГО МЕСЯЦА
+
+        when ((pref.getInt(getString(R.string.setDateDay), 0) + 1) <= calendar.get(Calendar.DAY_OF_MONTH)){
+            true -> {
+                calendar.set(Calendar.DAY_OF_MONTH, 1)
+                val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+
+                return dateFormat.format(calendar.time)
+            }
+            else -> {
+                var month = calendar.get(Calendar.MONTH) - 1
+                var year = calendar.get(Calendar.YEAR)
+                if (month == 0) {
+                    month = 12
+                    year -= 1
+                }
+                calendar.set(Calendar.MONTH, month)
+                calendar.set(Calendar.YEAR, year)
+                calendar.set(Calendar.DAY_OF_MONTH, 1)
+                val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+
+                return dateFormat.format(calendar.time)
+            }
+        }
+    }
+
+
+    // сохраняет данные о прогресс барах в pref
+    @SuppressLint("UseCompatLoadingForDrawables")
+    private fun calcProgressBar(key: String, res: Int){
+
+        // progressBarMainProgress          key: mainProgress
+        // progressBarMainMax               key: mainMax
+        // progressBarMainColor               key: mainColor
+        // progressBarSecondProgress        key: secondProgress
+        // progressBarSecondMax             key: secondMax
+        // progressBarSecondColor             key: secondColor
+        // progressBarSavingProgress        key: savingProgress
+        // progressBarSavingMax             key: savingMax
+        // progressBarSavingColor             key: savingColor
+
+        when (key) {
+            "main" -> {
+                val resForSave = pref.getInt("mainProgress", 0) + res
+                if (pref.getInt("mainMax", 0) >= resForSave){
+                    saveData("mainProgress", resForSave)
+                }
+                else {
+                    val savingPast = pref.getInt("savingProgress", 0)
+
+                    if(savingPast - res >= 0){
+                        saveData("mainMax", resForSave)
+                        saveData("mainProgress", resForSave)
+                        saveData("savingProgress", (savingPast - res))
+
+                        saveData("mainColor", R.drawable.custom_progress_bar3)
+                        saveData("savingColor", R.drawable.custom_progress_bar3)
+
+                        binding.progressBarMain.progressDrawable = resources.getDrawable(
+                            pref.getInt("mainColor", R.drawable.custom_progress_bar))
+                        binding.progressBarSaving.progressDrawable = resources.getDrawable(
+                            pref.getInt("savingColor", R.drawable.custom_progress_bar2))
+                    }
+                    else {
+                        saveData("mainMax", resForSave)
+                        saveData("mainProgress", resForSave)
+                        saveData("savingProgress", 0)
+                        val secondPast = pref.getInt("secondMax", 0)
+                        var dataToSave = 0
+                        if (secondPast - (res - savingPast) > 0) {
+                            dataToSave = secondPast - (res - savingPast)
+                        }
+                        saveData("secondMax", dataToSave)
+
+                        saveData("mainColor", R.drawable.custom_progress_bar3)
+                        saveData("savingColor", R.drawable.custom_progress_bar3)
+
+                        binding.progressBarMain.progressDrawable = resources.getDrawable(
+                            pref.getInt("mainColor", R.drawable.custom_progress_bar))
+                        binding.progressBarSaving.progressDrawable = resources.getDrawable(
+                            pref.getInt("savingColor", R.drawable.custom_progress_bar2))
+                    }
+                }
+            }
+            // "second"
+            else -> {
+                val resForSave = pref.getInt("secondProgress", 0) + res
+                if (pref.getInt("secondMax", 0) >= resForSave) {
+                    saveData("secondProgress", resForSave)
+                } else {
+                    val savingPast = pref.getInt("savingProgress", 0)
+
+                    if (savingPast - res >= 0) {
+                        saveData("secondMax", resForSave)
+                        saveData("secondProgress", resForSave)
+                        saveData("savingProgress", (savingPast - res))
+
+                        saveData("secondColor", R.drawable.custom_progress_bar3)
+                        saveData("savingColor", R.drawable.custom_progress_bar3)
+
+                        binding.progressBarSecondary.progressDrawable = resources.getDrawable(
+                            pref.getInt("secondColor", R.drawable.custom_progress_bar))
+                        binding.progressBarSaving.progressDrawable = resources.getDrawable(
+                            pref.getInt("savingColor", R.drawable.custom_progress_bar2))
+
+                    } else {
+                        saveData("secondMax", resForSave)
+                        saveData("secondProgress", resForSave)
+                        saveData("savingProgress", 0)
+                        val mainPast = pref.getInt("mainMax", 0)
+                        var dataToSave = 0
+                        if (mainPast - (res - savingPast) > 0) {
+                            dataToSave = mainPast - (res - savingPast)
+                        }
+                        saveData("mainMax", dataToSave)
+
+                        saveData("secondColor", R.drawable.custom_progress_bar3)
+                        saveData("savingColor", R.drawable.custom_progress_bar3)
+
+                        binding.progressBarSecondary.progressDrawable = resources.getDrawable(
+                            pref.getInt("secondColor", R.drawable.custom_progress_bar))
+                        binding.progressBarSaving.progressDrawable = resources.getDrawable(
+                            pref.getInt("savingColor", R.drawable.custom_progress_bar2))
+                    }
+                }
+            }
+        }
+
+    }
+
+    @SuppressLint("UseCompatLoadingForDrawables")
+    private fun calcProgressBarPlus(res: Int){
+        val textDate = calcDate(Calendar.getInstance())    // формируется ключ
+        val thread = Thread{
+            val resTotal = when (db.getDao().getBudgetData(textDate)) {
+                null -> 0
+                else -> db.getDao().getBudgetData(textDate)
+            }
+            if (resTotal == 0){
+                saveData("mainMax", (res * 0.5).toInt())
+                saveData("secondMax", (res * 0.3).toInt())
+                saveData("savingMax", (res * 0.2).toInt())
+                saveData("savingProgress", (res * 0.2).toInt())
+            }
+            else {
+                val mainMax = pref.getInt("mainMax", 0)
+                val secondMax = pref.getInt("secondMax", 0)
+                val savingMax = pref.getInt("savingMax", 0)
+                val savingProgress = pref.getInt("savingProgress", 0)
+
+                saveData("mainMax", (mainMax + (res * 0.5).toInt()))
+                saveData("secondMax",(secondMax + (res * 0.3).toInt()))
+                saveData("savingMax",(savingMax + (res * 0.2).toInt()))
+                saveData("savingProgress",(savingProgress + (res * 0.2).toInt()))
+            }
+
+            saveData("mainColor", R.drawable.custom_progress_bar)
+            saveData("secondColor", R.drawable.custom_progress_bar)
+            saveData("savingColor", R.drawable.custom_progress_bar2)
+
+            binding.progressBarMain.progressDrawable = resources.getDrawable(
+                pref.getInt("mainColor", R.drawable.custom_progress_bar))
+            binding.progressBarSecondary.progressDrawable = resources.getDrawable(
+                pref.getInt("secondColor", R.drawable.custom_progress_bar))
+            binding.progressBarSaving.progressDrawable = resources.getDrawable(
+                pref.getInt("savingColor", R.drawable.custom_progress_bar2))
+        }
+        thread.start()
+        thread.join()
+
+    }
+
 
 }
 
@@ -477,4 +749,17 @@ private class DragShadowBuilder(view: View, drawable: Int) : View.DragShadowBuil
         shadow?.draw(canvas)
     }
 
+}
+
+class ProgressBarAnimation(
+    private val progressBar: ProgressBar,
+    private val from: Float,
+    private val to: Float
+) :
+    Animation() {
+    override fun applyTransformation(interpolatedTime: Float, t: Transformation?) {
+        super.applyTransformation(interpolatedTime, t)
+        val value = from + (to - from) * interpolatedTime
+        progressBar.progress = value.toInt()
+    }
 }

@@ -8,6 +8,15 @@
     <string name="plsEnterSpend">Опишите трату!</string>
     <string name="deleteData">Данные успешно удалены!</string>
 
+    <string name="house">Все для дома</string>
+    <string name="bus">Транспорт</string>
+    <string name="food_house">Еда домой</string>
+    <string name="health">Здоровье и красота</string>
+    <string name="coffee">Рестораны и кафе</string>
+    <string name="games">Развлечения и хобби</string>
+    <string name="clothes">Одежда и аксессуары</string>
+    <string name="another">Другое</string>
+
     <string name="keyTotalBalance">total</string>
     <string name="flagSplashScreen">flagSplashScreen</string>
     <string name="setDateDay">setDateDay</string>

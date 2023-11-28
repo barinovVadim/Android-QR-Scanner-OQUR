@@ -8,14 +8,16 @@
     tools:context=".MainActivity" >
 
 
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bNavigation"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="72dp"
         android:background="@drawable/rounded_button_navigation"
-        app:itemIconSize="24dp"
+        android:paddingHorizontal="10dp"
+        app:itemIconSize="26dp"
         app:itemIconTint="@drawable/selector_button_navigation"
+        app:itemPaddingBottom="18dp"
+        app:itemPaddingTop="10dp"
         app:itemRippleColor="@null"
         app:itemTextAppearanceActive="@style/BottomNavigationViewTextStyle"
         app:itemTextColor="@color/colorPrimary"
@@ -23,7 +25,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/button_menu"/>
+        app:menu="@menu/button_menu" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/myFragment"

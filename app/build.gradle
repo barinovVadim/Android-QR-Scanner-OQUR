@@ -9,7 +9,7 @@ android {
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.example.wym_002"
+        applicationId 'com.example.WYM'
         minSdk 26
         targetSdk 34
         versionCode 1
