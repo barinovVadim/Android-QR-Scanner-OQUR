@@ -54,7 +54,7 @@ class AnaliticsFragment : Fragment() {
     private fun showDialogMyInfo(bitmap: Bitmap) {
 
         dialogMyInfo = DialogInfo2Binding.inflate(layoutInflater)
-        dialog = Dialog(this.activity!!)
+        dialog = Dialog(this.requireActivity())
         dialogMyInfo.imageView.setImageBitmap(bitmap)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.setContentView(dialogMyInfo.root)

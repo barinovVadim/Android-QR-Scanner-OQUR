@@ -34,7 +34,7 @@ class MainFragment : Fragment(), ZBarScannerView.ResultHandler {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        zbView = ZBarScannerView(this.activity!!)
+        zbView = ZBarScannerView(this.requireActivity())
 
         checkCameraPermission()
 
@@ -61,7 +61,7 @@ class MainFragment : Fragment(), ZBarScannerView.ResultHandler {
     private fun showDialogMyInfo(string: Result?) {
 
         dialogMyInfo = DialogInfoBinding.inflate(layoutInflater)
-        dialog = Dialog(this.activity!!)
+        dialog = Dialog(this.requireActivity())
         dialogMyInfo.textMyInfo1.text = string?.contents
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.setContentView(dialogMyInfo.root)
@@ -78,10 +78,10 @@ class MainFragment : Fragment(), ZBarScannerView.ResultHandler {
     }
 
     private fun checkCameraPermission(){
-        if(ContextCompat.checkSelfPermission(this.activity!!, Manifest.permission.CAMERA)
+        if(ContextCompat.checkSelfPermission(this.requireActivity(), Manifest.permission.CAMERA)
             != PackageManager.PERMISSION_GRANTED){
 
-            ActivityCompat.requestPermissions(this.activity!!,
+            ActivityCompat.requestPermissions(this.requireActivity(),
                 arrayOf(Manifest.permission.CAMERA), 12)
 
         } else {
