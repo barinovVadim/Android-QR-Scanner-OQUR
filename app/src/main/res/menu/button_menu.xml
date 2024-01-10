@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/analiticsFragment2"
-        android:icon="@drawable/analytics_button_navigation"
-        android:title="Отчет"/>
+        android:icon="@drawable/qr_code_2_add"
+        android:title="Generator"/>
 
     <item
         android:id="@+id/mainFragment2"
-        android:icon="@drawable/home_button_navigation"
-        android:title="Главная"/>
+        android:icon="@drawable/photo_camera"
+        android:title="Scanner"/>
 
     <item
         android:id="@+id/settingsFragment2"
-        android:icon="@drawable/settings_button_navigation"
-        android:title="Настройки"/>
+        android:icon="@drawable/clear_all"
+        android:title="Journal"/>
 
 </menu>

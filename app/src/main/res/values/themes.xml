@@ -1,9 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Wym_002" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.OQUR" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryVariant">@color/backColor</item>
+        <item name="colorPrimaryVariant">@color/colorPrimary</item>
         <item name="colorOnPrimary">@color/secondaryWhite</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/colorPrimary</item>
@@ -12,70 +12,13 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-        <item name="android:datePickerDialogTheme">@style/MyDatePickerDialogTheme</item>
-        <item name="android:timePickerDialogTheme">@style/MyTimePickerDialogTheme</item>
+
     </style>
 
     <style name="BottomNavigationViewTextStyle">
         <item name="android:fontFamily">@font/ubuntu_light</item>
         <item name="android:textSize">12sp</item>
     </style>
-
-
-
-    <style name="MyDatePickerDialogTheme" parent="ThemeOverlay.AppCompat.Dialog">
-
-        <item name="android:fontFamily">@font/ubuntu</item>
-        <item name="android:textAllCaps">false</item>
-
-        <item name="android:headerMonthTextAppearance">@style/HeaderTextStyle</item>
-
-        <item name="android:datePickerStyle">@style/MyDatePickerStyle</item>
-
-        <item name="android:textColorPrimaryInverse">@color/backColor</item>
-        <item name="android:colorControlHighlight">@color/backSelected</item>
-        <item name="android:textColorSecondaryInverse">@color/secondaryWhite</item>
-        <item name="android:colorAccent">@color/colorPrimary</item>
-        <item name="android:headerBackground">@color/backColor</item>
-        <item name="android:windowBackground">@drawable/rounded_calendar</item>     <!--calendar background-->
-        <item name="android:colorControlActivated">@color/colorPrimary</item> <!--selected day-->
-        <item name="android:textColorPrimary">@color/secondaryWhite</item> <!--days of the month-->
-        <item name="android:textColorSecondary">@color/secondaryGrey</item>    <!--days of the week-->
-    </style>
-
-    <style name="MyDatePickerStyle" parent="@android:style/Widget.Material.Light.DatePicker">
-        <item name="android:headerBackground">@color/backColor</item> <!-- header background color -->
-    </style>
-
-
-    
-    <style name="MyTimePickerDialogTheme" parent="ThemeOverlay.AppCompat.Dialog">
-
-        <item name="android:fontFamily">@font/ubuntu</item>
-        <item name="android:textAllCaps">false</item>
-
-        <item name="android:headerTimeTextAppearance">@style/HeaderTextStyle</item>
-
-        <item name="android:timePickerStyle">@style/MyTimePickerStyle</item>
-        <item name="android:timePickerMode">clock</item>
-        <item name="showTitle">false</item>
-
-        <item name="android:textColorPrimaryInverse">@color/backColor</item>
-        <item name="android:colorControlHighlight">@color/backSelected</item>
-        <item name="android:textColorSecondaryInverse">@color/secondaryWhite</item>
-        <item name="android:colorAccent">@color/colorPrimary</item>
-        <item name="android:colorSecondary">@color/colorPrimary</item>
-        <item name="android:headerBackground">@color/backColor</item>
-        <item name="android:windowBackground">@drawable/rounded_calendar</item>     <!--calendar background-->
-        <item name="android:colorControlActivated">@color/colorPrimary</item> <!--selected day-->
-        <item name="android:textColorPrimary">@color/backColor</item> <!--hours-->
-        <item name="android:textColorSecondary">@color/backSelected</item>    <!--setTimePickerMode-->
-    </style>
-
-    <style name="MyTimePickerStyle" parent="@android:style/Widget.Material.Light.TimePicker">
-        <item name="android:headerBackground">@color/backColor</item> <!-- header background color -->
-    </style>
-
 
 
     <style name="HeaderTextStyle" parent="@android:style/TextAppearance.Medium">

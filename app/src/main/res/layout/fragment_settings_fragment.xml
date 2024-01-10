@@ -4,140 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backColor"
+    android:background="@color/whitePrimary"
     tools:context=".fragments.SettingsFragment">
 
     <TextView
-        android:id="@+id/textData"
+        android:id="@+id/textView4"
         android:layout_width="wrap_content"
-        android:layout_height="32dp"
-        android:gravity="center_vertical"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="50dp"
-        android:fontFamily="@font/ubuntu_light"
-        android:text="Дата начала учета"
-        android:textColor="@color/secondaryWhite"
-        android:textSize="18sp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="@font/ubuntu"
+        android:text="WWW.GOOGLE.COM"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView5" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/qrcode_1_"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
-    <TextView
-        android:id="@+id/textSpashScreen"
-        android:layout_width="wrap_content"
-        android:layout_height="32dp"
-        android:gravity="center_vertical"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/ubuntu_light"
-        android:text="Включить заставку"
-        android:textColor="@color/secondaryWhite"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/textData"
-        app:layout_constraintTop_toBottomOf="@+id/textData" />
-
-    <TextView
-        android:id="@+id/clearPref"
-        android:layout_width="wrap_content"
-        android:layout_height="32dp"
-        android:gravity="center_vertical"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/ubuntu_light"
-        android:text="Стереть данные"
-        android:textColor="@color/secondaryWhite"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/textData"
-        app:layout_constraintTop_toBottomOf="@+id/textSpashScreen" />
-
-    <TextView
-        android:id="@+id/textInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="32dp"
-        android:gravity="center_vertical"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/ubuntu_light"
-        android:text="О нас"
-        android:textColor="@color/secondaryWhite"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/textData"
-        app:layout_constraintTop_toBottomOf="@+id/clearPref" />
-
-    <TextView
-        android:id="@+id/textViewWYM"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:fontFamily="@font/ubuntu_light"
-        android:gravity="center_horizontal"
-        android:text="WYM\nWatch Your Money\nv.1.0"
-        android:textColor="@color/greyWYM"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="30dp"
+        android:background="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:id="@+id/imageDate"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginEnd="10dp"
-        android:src="@drawable/calendar_apply"
-        app:layout_constraintBottom_toBottomOf="@+id/textData"
-        app:layout_constraintEnd_toStartOf="@+id/textData"
-        app:layout_constraintTop_toTopOf="@+id/textData" />
-
-    <ImageView
-        android:id="@+id/imageSplashScreen"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginEnd="10dp"
-        android:src="@drawable/image_screen"
-        app:layout_constraintBottom_toBottomOf="@+id/textSpashScreen"
-        app:layout_constraintEnd_toStartOf="@+id/textSpashScreen"
-        app:layout_constraintTop_toTopOf="@+id/textSpashScreen" />
-
-    <ImageView
-        android:id="@+id/imageClearPref"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginEnd="10dp"
-        android:src="@drawable/delete"
-        app:layout_constraintBottom_toBottomOf="@+id/clearPref"
-        app:layout_constraintEnd_toStartOf="@+id/clearPref"
-        app:layout_constraintTop_toTopOf="@+id/clearPref" />
-
-    <ImageView
-        android:id="@+id/imageInfo"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginEnd="10dp"
-        android:src="@drawable/group"
-        app:layout_constraintBottom_toBottomOf="@+id/textInfo"
-        app:layout_constraintEnd_toStartOf="@+id/textInfo"
-        app:layout_constraintTop_toTopOf="@+id/textInfo" />
-
-    <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/switchSplashScreen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:checked="true"
-        android:thumb="@drawable/selector_switch_thumb"
-        app:layout_constraintBottom_toBottomOf="@+id/imageSplashScreen"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageSplashScreen"
-        app:track="@drawable/selector_switch_track" />
-
-    <TextView
-        android:id="@+id/textSetDate"
-        android:layout_width="48dp"
-        android:layout_height="32dp"
-        android:layout_marginEnd="32dp"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="1"
-        android:textColor="@color/backColor"
-        android:textSize="18dp"
-        android:background="@drawable/rounded_toast"
-        app:layout_constraintBottom_toBottomOf="@+id/imageDate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageDate" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

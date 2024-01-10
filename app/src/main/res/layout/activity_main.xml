@@ -20,7 +20,7 @@
         app:itemPaddingTop="10dp"
         app:itemRippleColor="@null"
         app:itemTextAppearanceActive="@style/BottomNavigationViewTextStyle"
-        app:itemTextColor="@color/colorPrimary"
+        app:itemTextColor="@color/secondaryWhite"
         app:labelVisibilityMode="selected"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,6 +38,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/my_nav" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="26dp"
+        android:background="#00000000"
+        android:backgroundTint="#00FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/oqur" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

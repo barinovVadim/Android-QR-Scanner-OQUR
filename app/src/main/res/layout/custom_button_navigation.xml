@@ -13,7 +13,7 @@
         app:itemIconSize="24dp"
         app:itemIconTint="@drawable/selector_button_navigation"
         app:itemTextAppearanceActive="@style/BottomNavigationViewTextStyle"
-        app:itemTextColor="@color/colorPrimary"
+        app:itemTextColor="@color/secondaryWhite"
         app:labelVisibilityMode="selected"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
