@@ -1,4 +1,4 @@
-package com.example.wym_002
+package com.example.oqur
 
 import android.app.Dialog
 import android.view.View

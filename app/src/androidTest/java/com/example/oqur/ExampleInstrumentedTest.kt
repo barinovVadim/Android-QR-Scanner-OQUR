@@ -1,4 +1,4 @@
-package com.example.wym_002
+package com.example.oqur
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.example.wym_002", appContext.packageName)
+        assertEquals("com.example.oqur", appContext.packageName)
     }
 }

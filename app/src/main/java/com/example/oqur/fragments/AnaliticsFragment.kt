@@ -1,4 +1,4 @@
-package com.example.wym_002.fragments
+package com.example.oqur.fragments
 
 import android.app.Dialog
 import android.graphics.Bitmap
@@ -9,8 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.wym_002.databinding.DialogInfo2Binding
-import com.example.wym_002.databinding.FragmentAnaliticsFragmentBinding
+import com.example.oqur.databinding.DialogInfo2Binding
+import com.example.oqur.databinding.FragmentAnaliticsFragmentBinding
 import com.google.zxing.BarcodeFormat
 import com.journeyapps.barcodescanner.BarcodeEncoder
 import java.io.WriteAbortedException

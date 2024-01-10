@@ -6,17 +6,17 @@
     app:startDestination="@id/mainFragment2">
     <fragment
         android:id="@+id/mainFragment2"
-        android:name="com.example.wym_002.fragments.MainFragment"
+        android:name="com.example.oqur.fragments.MainFragment"
         android:label="fragment_main_fragment"
         tools:layout="@layout/fragment_main_fragment" />
     <fragment
         android:id="@+id/analiticsFragment2"
-        android:name="com.example.wym_002.fragments.AnaliticsFragment"
+        android:name="com.example.oqur.fragments.AnaliticsFragment"
         android:label="fragment_analitics_fragment"
         tools:layout="@layout/fragment_analitics_fragment" />
     <fragment
         android:id="@+id/settingsFragment2"
-        android:name="com.example.wym_002.fragments.SettingsFragment"
+        android:name="com.example.oqur.fragments.SettingsFragment"
         android:label="fragment_settings_fragment"
         tools:layout="@layout/fragment_settings_fragment" />
 </navigation>

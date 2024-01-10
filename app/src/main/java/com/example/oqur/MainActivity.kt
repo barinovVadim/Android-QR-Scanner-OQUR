@@ -1,14 +1,14 @@
-package com.example.wym_002
+package com.example.oqur
 
 
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.wym_002.fragments.AnaliticsFragment
-import com.example.wym_002.fragments.MainFragment
-import com.example.wym_002.fragments.SettingsFragment
-import com.example.wym_002.databinding.ActivityMainBinding
+import com.example.oqur.fragments.AnaliticsFragment
+import com.example.oqur.fragments.MainFragment
+import com.example.oqur.fragments.SettingsFragment
+import com.example.oqur.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {

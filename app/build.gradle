@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.wym_002'
+    namespace 'com.example.oqur'
     compileSdk 34
 
     defaultConfig {
-        applicationId 'com.example.OQUR'
+        applicationId 'com.example.oqur'
         minSdk 26
         targetSdk 34
         versionCode 1

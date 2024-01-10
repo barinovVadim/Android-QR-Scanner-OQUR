@@ -1,11 +1,11 @@
-package com.example.wym_002.fragments
+package com.example.oqur.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.wym_002.databinding.FragmentSettingsFragmentBinding
+import com.example.oqur.databinding.FragmentSettingsFragmentBinding
 
 class SettingsFragment : Fragment() {
 

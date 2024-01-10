@@ -1,4 +1,4 @@
-package com.example.wym_002.fragments
+package com.example.oqur.fragments
 
 
 import android.Manifest
@@ -10,17 +10,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AlphaAnimation
-import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.example.wym_002.R
-import com.example.wym_002.databinding.*
-import com.example.wym_002.hidingPanel
+import com.example.oqur.databinding.*
 import me.dm7.barcodescanner.zbar.Result
 import me.dm7.barcodescanner.zbar.ZBarScannerView
-import kotlin.concurrent.thread
 
 
 class MainFragment : Fragment(), ZBarScannerView.ResultHandler {
